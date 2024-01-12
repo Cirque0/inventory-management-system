@@ -40,7 +40,7 @@ export default function Dashboard({ auth }) {
                     </StatCard>
                 </div>
 
-                <div className='flex flex-col bg-white rounded-lg p-4 shadow'>
+                <div className='flex flex-col bg-white rounded-lg p-4 gap-4 shadow'>
                     <span className='font-bold text-xl'>Unresolved Requests</span>
                     <div className='grid grid-cols-3 gap-4'>
                         <div className="bg-gray-100 rounded h-40">1</div>

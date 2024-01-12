@@ -27,10 +27,25 @@ export default function Authenticated({ user, header, children }) {
                     </ResponsiveNavLink>
 
                     {user.role_id === 1 && (
+                        <>
+                            <ResponsiveNavLink href='#'>
+                                Accounts
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink href='#'>
+                                Requests
+                            </ResponsiveNavLink>
+                        </>
+                    )}
+
+                    {user.role_id === 2 && (
                         <ResponsiveNavLink href='#'>
-                            Requests
+                            Your Requests
                         </ResponsiveNavLink>
                     )}
+
+                    <ResponsiveNavLink href='#'>
+                        Items
+                    </ResponsiveNavLink>
                 </div>
             </nav>
 
