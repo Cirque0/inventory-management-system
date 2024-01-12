@@ -6,6 +6,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import NavUserTag from '@/Components/NavUserTag';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -21,7 +22,7 @@ export default function Authenticated({ user, header, children }) {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <Dropdown>
+                    {/* <Dropdown>
                         <Dropdown.Trigger>
                             <span className="w-full flex justify-end rounded-md">
                                 <button
@@ -52,16 +53,18 @@ export default function Authenticated({ user, header, children }) {
                                 Log Out
                             </Dropdown.Link>
                         </Dropdown.Content>
-                    </Dropdown>
+                    </Dropdown> */}
 
-                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                    <NavUserTag user={user} />
+
+                    <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                         Dashboard
-                    </NavLink>
+                    </ResponsiveNavLink>
 
                     {user.role_id === 1 && (
-                        <NavLink href='#'>
+                        <ResponsiveNavLink href='#'>
                             Requests
-                        </NavLink>
+                        </ResponsiveNavLink>
                     )}
                 </div>
             </nav>
@@ -72,7 +75,7 @@ export default function Authenticated({ user, header, children }) {
                 className={'relative sm:hidden block z-50'}
             >
                 <div className='fixed inset-0 overflow-y-auto bg-slate-800/50'>
-                    <Dialog.Panel className={'h-screen flex flex-col mr-24 bg-gray-100 p-4 gap-4'}>
+                    <Dialog.Panel className={'h-screen flex flex-col mr-24 bg-white p-4 gap-4'}>
                         <Dialog.Title className={'flex justify-between align-baseline'}>
                             <Link href="/">
                                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
@@ -81,7 +84,7 @@ export default function Authenticated({ user, header, children }) {
                         </Dialog.Title>
 
                         <div className="flex flex-col gap-2">
-                            <Dropdown>
+                            {/* <Dropdown>
                                 <Dropdown.Trigger>
                                     <span className="w-full flex justify-end rounded-md">
                                         <button
@@ -112,7 +115,9 @@ export default function Authenticated({ user, header, children }) {
                                         Log Out
                                     </Dropdown.Link>
                                 </Dropdown.Content>
-                            </Dropdown>
+                            </Dropdown> */}
+
+                            <NavUserTag user={user} />
 
                             <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                                 Dashboard
@@ -142,7 +147,7 @@ export default function Authenticated({ user, header, children }) {
                         </div>
                     </header>
                 )}
-                
+
                 {children}
             </main>
         </div>
