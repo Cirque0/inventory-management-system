@@ -10,7 +10,7 @@ export default function NavUserTag({ user }) {
             <span className="w-full flex justify-end rounded-md">
                 <button
                     type="button"
-                    className="w-full inline-flex justify-between items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-gray-50 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                    className="w-full inline-flex justify-between items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md text-gray-500 bg-gray-50 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                     onClick={() => setShowOptions(!showOptions)}
                 >
                     <span className="flex gap-2">
@@ -27,7 +27,7 @@ export default function NavUserTag({ user }) {
                 </button>
             </span>
 
-            <div className={`${showOptions ? 'flex' : 'hidden'} flex-col text-sm bg-gray-50 rounded-md overflow-hidden`}>
+            <div className={`${showOptions ? 'flex' : 'hidden'} flex-col bg-gray-50 rounded-md overflow-hidden`}>
                 <DropdownLink href={route('profile.edit')}>Profile</DropdownLink>
                 <DropdownLink href={route('logout')} method="post" as="button" className={'text-red-500'}>Log Out</DropdownLink>
             </div>
@@ -40,7 +40,7 @@ function DropdownLink({ className, children, ...props }) {
         <Link
             {...props}
             className={
-                'block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 font-medium hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out ' +
+                'block w-full px-4 py-2 text-start text-base leading-5 text-gray-700 font-medium hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out ' +
                 className
             }
         >
