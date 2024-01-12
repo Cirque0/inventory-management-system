@@ -16,7 +16,7 @@ const Header = ({ children, className }) => {
 };
 
 const Content = ({ children, className }) => {
-    return <span className={"text-xl " + className}>{children}</span>;
+    return <span className={"text-xl text-right " + className}>{children}</span>;
 };
 
 StatCard.Header = Header;
