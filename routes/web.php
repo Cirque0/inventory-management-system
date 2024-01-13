@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,11 +26,20 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::get('/accounts', [AccountsController::class, 'show'])->name('accounts.show');
+    Route::get('/accounts/create', [AccountsController::class, 'create'])->name('accounts.create');
+    Route::post('/accounts/store', [AccountsController::class, 'store'])->name('accounts.store');
+    Route::get('/accounts/{id}', [AccountsController::class, 'edit'])->name('accounts.edit');
+    Route::patch('/accounts/{id}', [AccountsController::class, 'update'])->name('accounts.update');
+    Route::put('/accounts/{id}/password', [AccountsController::class, 'password'])->name('accounts.password');
+    Route::delete('/accounts/{id}', [AccountsController::class, 'destroy'])->name('accounts.destroy');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

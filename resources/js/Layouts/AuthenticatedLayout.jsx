@@ -28,7 +28,7 @@ export default function Authenticated({ user, header, children }) {
 
                     {user.role_id === 1 && (
                         <>
-                            <ResponsiveNavLink href='#'>
+                            <ResponsiveNavLink href={route('accounts.show')} active={route().current('accounts.*')}>
                                 Accounts
                             </ResponsiveNavLink>
                             <ResponsiveNavLink href='#'>
@@ -71,10 +71,25 @@ export default function Authenticated({ user, header, children }) {
                             </ResponsiveNavLink>
 
                             {user.role_id === 1 && (
+                                <>
+                                    <ResponsiveNavLink href={route('accounts.show')} active={route().current('accounts.*')}>
+                                        Accounts
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink href='#'>
+                                        Requests
+                                    </ResponsiveNavLink>
+                                </>
+                            )}
+
+                            {user.role_id === 2 && (
                                 <ResponsiveNavLink href='#'>
-                                    Requests
+                                    Your Requests
                                 </ResponsiveNavLink>
                             )}
+
+                            <ResponsiveNavLink href='#'>
+                                Items
+                            </ResponsiveNavLink>
                         </div>
                     </Dialog.Panel>
                 </div>

@@ -41,7 +41,9 @@ export default function Dashboard({ auth }) {
                 </div>
 
                 <div className='flex flex-col bg-white rounded-lg p-4 gap-4 shadow'>
-                    <span className='font-bold text-xl'>Unresolved Requests</span>
+                    <header>
+                        <h2 className="text-lg font-medium text-gray-900">Pending Requests</h2>
+                    </header>
                     <div className='grid grid-cols-3 gap-4'>
                         <div className="bg-gray-100 rounded h-40">1</div>
                         <div className="bg-gray-100 rounded h-40">2</div>
