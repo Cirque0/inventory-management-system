@@ -24,11 +24,6 @@ export default function Items({ auth, items }) {
                         ) : (
                             <span className='bg-gray-50 rounded-lg p-4 italic'>No items found.</span>
                         )}
-                        {items.length ? (
-                            items.map((item) => <Item key={item.id} item={item} />)
-                        ) : (
-                            <span className='bg-gray-50 rounded-lg p-4 italic'>No items found.</span>
-                        )}
                     </div>
                 </Card>
             </Container>
