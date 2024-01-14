@@ -97,7 +97,7 @@ export default function Authenticated({ user, header, children }) {
 
             <main className='relative flex flex-col grow'>
                 {header && (
-                    <header className="sticky top-0 bg-white shadow">
+                    <header className="sticky z-50 top-0 bg-white shadow">
                         <div className="flex items-center bg-white max-w-7xl mx-auto sm:py-6 py-4 px-4 sm:px-6 lg:px-8 gap-2">
                             <button
                                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
