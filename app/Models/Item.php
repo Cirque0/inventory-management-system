@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+class Item extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'itemable_id',
+        'itemable_type',
+        'acquisition_date',
+        'acquisition_cost',
+        'source',
+        'status',
+        'quantity',
+        'value',
+        'location',
+        'encoder_id',
+    ];
+
+    public function itemable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    public function encoder(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+}
