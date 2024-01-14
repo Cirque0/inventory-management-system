@@ -45,7 +45,7 @@ export default function CreateItemForm({ className, categories }) {
                         value={data.category}
                         onChange={(value) => setData('category', value)}
                         className="mt-1 block w-full"
-                        options={[...categories, 'furniture', 'water_crafts']}
+                        options={categories}
                     />
 
                     <InputError className="mt-2" message={errors.category} />

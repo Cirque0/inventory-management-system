@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Relation::enforceMorphMap([
             'motor_vehicle' => 'App\Models\MotorVehicle',
+            'water_craft' => 'App\Models\WaterCraft',
         ]);
     }
 }
