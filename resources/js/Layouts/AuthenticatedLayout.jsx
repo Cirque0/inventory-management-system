@@ -43,7 +43,7 @@ export default function Authenticated({ user, header, children }) {
                         </ResponsiveNavLink>
                     )}
 
-                    <ResponsiveNavLink href='#'>
+                    <ResponsiveNavLink href={route('items.show')} active={route().current('items.*')}>
                         Items
                     </ResponsiveNavLink>
                 </div>

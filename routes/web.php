@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/accounts/{id}', [AccountsController::class, 'update'])->name('accounts.update');
     Route::put('/accounts/{id}/password', [AccountsController::class, 'password'])->name('accounts.password');
     Route::delete('/accounts/{id}', [AccountsController::class, 'destroy'])->name('accounts.destroy');
+
+    Route::get('/items', [ItemController::class, 'show'])->name('items.show');
+    Route::get('/items/add', [ItemController::class, 'create'])->name('items.create');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

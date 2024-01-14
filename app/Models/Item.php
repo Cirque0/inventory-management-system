@@ -25,6 +25,10 @@ class Item extends Model
         'encoder_id',
     ];
 
+    protected $casts = [
+        'acquisition_date' => 'date',
+    ];
+
     public function itemable(): MorphTo
     {
         return $this->morphTo();
