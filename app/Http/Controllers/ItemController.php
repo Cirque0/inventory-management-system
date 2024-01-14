@@ -21,4 +21,12 @@ class ItemController extends Controller
             'categories' => array_keys(Relation::morphMap()),
         ]);
     }
+
+    public function store(Request $request) {
+        $request->validate([
+            'make' => ['numeric']
+        ]);
+        
+        error_log(json_encode($request->all()));
+    }
 }
