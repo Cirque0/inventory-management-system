@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemFormRequest;
+use App\Models\CommsEquipment;
 use App\Models\Item;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
@@ -58,6 +59,15 @@ class ItemController extends Controller
                     'type' => $request->type,
                     'make' => $request->make,
                     'cal' => $request->cal,
+                    'serial_num' => $request->serial_num,
+                ]);
+
+                break; 
+
+            case 'Communications Equipment':
+                $itemable = CommsEquipment::create([
+                    'type' => $request->type,
+                    'make' => $request->make,
                     'serial_num' => $request->serial_num,
                 ]);
 

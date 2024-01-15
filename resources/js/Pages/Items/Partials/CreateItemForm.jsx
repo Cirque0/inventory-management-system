@@ -1,3 +1,4 @@
+import GenericEquipmentForm from "@/Components/CategoryForms/GenericEquipmentForm";
 import MPSEquipmentForm from "@/Components/CategoryForms/MPSEquipmentForm";
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
 import WaterCraftForm from "@/Components/CategoryForms/WaterCraftForm";
@@ -78,6 +79,8 @@ export default function CreateItemForm({ className, categories }) {
                             return <WaterCraftForm data={data} setData={setData} errors={errors} />
                         case "MPS Equipment":
                             return <MPSEquipmentForm data={data} setData={setData} errors={errors} />
+                        case "Communications Equipment":
+                            return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
                     }
                 })()}
 

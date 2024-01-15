@@ -65,6 +65,14 @@ class ItemFormRequest extends FormRequest
                     'serial_num' => ['string'],
                 ];
                 break;
+
+            case 'Communications Equipment':
+                $additionalRules = [
+                    'type' => ['string'],
+                    'make' => ['string'],
+                    'serial_num' => ['string'],
+                ];
+                break;
         }
 
         return array_merge($generalRules, $additionalRules);
