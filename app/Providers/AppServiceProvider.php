@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
             'Communications Equipment' => 'App\Models\CommsEquipment',
             'Technical Scientific Equipment' => 'App\Models\TechSciEquipment',
             'ICT' => 'App\Models\ICT',
+            'Office Equipment' => 'App\Models\OfficeEquipment',
         ]);
     }
 }

@@ -82,6 +82,7 @@ export default function CreateItemForm({ className, categories }) {
                         case "Communications Equipment":
                         case "Technical Scientific Equipment":
                         case "ICT":
+                        case "Office Equipment":
                             return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
                     }
                 })()}
