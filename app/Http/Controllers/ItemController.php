@@ -32,7 +32,7 @@ class ItemController extends Controller
     //
     public function show() {
         return Inertia::render('Items/Items', [
-            'items' => Item::with('itemable')->get(),
+            'items' => Item::with('itemable')->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -120,8 +120,8 @@ class ItemController extends Controller
             'location',
         ]));
 
-        $item->quantity = $request->quantity ?: 0;
-        $item->value = $request->quantity ?: 0;
+        $item->quantity = $request->quantity ?: 1;
+        $item->value = $request->value ?: $request->acquisition_cost;
         $item->itemable_type = $request->category;
         $item->itemable_id = $itemable->id;
         $item->encoder_id = Auth::id();
