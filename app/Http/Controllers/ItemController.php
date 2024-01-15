@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemFormRequest;
 use App\Models\CommsEquipment;
+use App\Models\ICT;
 use App\Models\Item;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
@@ -76,6 +77,15 @@ class ItemController extends Controller
 
             case 'Technical Scientific Equipment':
                 $itemable = TechSciEquipment::create([
+                    'type' => $request->type,
+                    'make' => $request->make,
+                    'serial_num' => $request->serial_num,
+                ]);
+
+                break; 
+
+            case 'ICT':
+                $itemable = ICT::create([
                     'type' => $request->type,
                     'make' => $request->make,
                     'serial_num' => $request->serial_num,
