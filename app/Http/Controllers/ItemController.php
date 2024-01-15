@@ -14,6 +14,7 @@ use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
 use App\Models\OfficeEquipment;
 use App\Models\OtherEquipment;
+use App\Models\OtherPropertyEquipment;
 use App\Models\TechSciEquipment;
 use App\Models\WaterCraft;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -86,6 +87,10 @@ class ItemController extends Controller
 
             case 'Animal':
                 $itemable = Animal::create($request->only(['type', 'breed', 'sex', 'color', 'microchip']));
+                break;
+
+            case 'Other Property Equipment':
+                $itemable = OtherPropertyEquipment::create($request->only(['type', 'make', 'serial_num']));
                 break;
         }
 

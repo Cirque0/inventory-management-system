@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             'Other Machinery and Equipment' => 'App\Models\OtherEquipment',
             'Disaster Response and Rescue Equipment' => 'App\Models\DRREquipment',
             'Animal' => 'App\Models\Animal',
+            'Other Property Equipment' => 'App\Models\OtherPropertyEquipment',
         ]);
     }
 }
