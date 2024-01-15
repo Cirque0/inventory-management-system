@@ -11,6 +11,7 @@ use App\Models\MedicalEquipment;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
 use App\Models\OfficeEquipment;
+use App\Models\OtherEquipment;
 use App\Models\TechSciEquipment;
 use App\Models\WaterCraft;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -47,31 +48,35 @@ class ItemController extends Controller
 
             case 'MPS Equipment':
                 $itemable = MPSEquipment::create($request->only(['type', 'make', 'cal', 'serial_num']));
-                break; 
+                break;
 
             case 'Communications Equipment':
                 $itemable = CommsEquipment::create($request->only(['type', 'make', 'serial_num']));
-                break; 
+                break;
 
             case 'Technical Scientific Equipment':
                 $itemable = TechSciEquipment::create($request->only(['type', 'make', 'serial_num']));
-                break; 
+                break;
 
             case 'ICT':
                 $itemable = ICT::create($request->only(['type', 'make', 'serial_num']));
-                break; 
+                break;
 
             case 'Office Equipment':
                 $itemable = OfficeEquipment::create($request->only(['type', 'make', 'serial_num']));
-                break; 
+                break;
 
             case 'Furniture Fixture':
                 $itemable = FurnitureFixture::create($request->only(['type', 'make', 'serial_num']));
-                break; 
+                break;
 
             case 'Medical Equipment':
                 $itemable = MedicalEquipment::create($request->only(['type', 'make', 'serial_num']));
-                break; 
+                break;
+
+            case 'Other Machinery and Equipment':
+                $itemable = OtherEquipment::create($request->only(['type', 'make', 'serial_num']));
+                break;
         }
 
         $item = new Item;
