@@ -37,76 +37,35 @@ class ItemController extends Controller
     public function store(ItemFormRequest $request) {
         switch($request->category) {
             case 'Motor Vehicle':
-                $itemable = MotorVehicle::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'engine_num' => $request->engine_num,
-                    'chassis_num' => $request->chassis_num,
-                    'plate_num' => $request->plate_num,
-                ]);
+                $itemable = MotorVehicle::create($request->only(['type', 'make', 'engine_num', 'chassis_num', 'plate_num']));
                 break;
 
             case 'Water Craft':
-                $itemable = WaterCraft::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'body_num' => $request->body_num,
-                    'starboard_side' => $request->starboard_side,
-                    'port_side' => $request->port_side,
-                    'centerboard' => $request->centerboard,
-                ]);
-
+                $itemable = WaterCraft::create($request->only(['type', 'make', 'body_num', 'starboard_side', 'port_side', 'centerboard']));
                 break;
 
             case 'MPS Equipment':
-                $itemable = MPSEquipment::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'cal' => $request->cal,
-                    'serial_num' => $request->serial_num,
-                ]);
-
+                $itemable = MPSEquipment::create($request->only(['type', 'make', 'cal', 'serial_num']));
                 break; 
 
             case 'Communications Equipment':
-                $itemable = CommsEquipment::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'serial_num' => $request->serial_num,
-                ]);
-
+                $itemable = CommsEquipment::create($request->only(['type', 'make', 'serial_num']));
                 break; 
 
             case 'Technical Scientific Equipment':
-                $itemable = TechSciEquipment::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'serial_num' => $request->serial_num,
-                ]);
-
+                $itemable = TechSciEquipment::create($request->only(['type', 'make', 'serial_num']));
                 break; 
 
             case 'ICT':
-                $itemable = ICT::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'serial_num' => $request->serial_num,
-                ]);
-
+                $itemable = ICT::create($request->only(['type', 'make', 'serial_num']));
                 break; 
 
             case 'Office Equipment':
-                $itemable = OfficeEquipment::create([
-                    'type' => $request->type,
-                    'make' => $request->make,
-                    'serial_num' => $request->serial_num,
-                ]);
-
+                $itemable = OfficeEquipment::create($request->only(['type', 'make', 'serial_num']));
                 break; 
 
             case 'Furniture Fixture':
                 $itemable = FurnitureFixture::create($request->only(['type', 'make', 'serial_num']));
-
                 break; 
         }
 
