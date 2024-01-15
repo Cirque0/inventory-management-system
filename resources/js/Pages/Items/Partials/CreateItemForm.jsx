@@ -42,19 +42,6 @@ export default function CreateItemForm({ className, categories }) {
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel value="Category" required />
-
-                    <Combobox
-                        value={data.category}
-                        onChange={(value) => setData('category', value)}
-                        className="mt-1 block w-full"
-                        options={categories}
-                    />
-
-                    <InputError className="mt-2" message={errors.category} />
-                </div>
-
-                <div>
                     <InputLabel htmlFor="name" value="Name" required />
 
                     <TextInput
@@ -68,6 +55,19 @@ export default function CreateItemForm({ className, categories }) {
                     />
 
                     <InputError className="mt-2" message={errors.name} />
+                </div>
+
+                <div>
+                    <InputLabel value="Category" required />
+
+                    <Combobox
+                        value={data.category}
+                        onChange={(value) => setData('category', value)}
+                        className="mt-1 block w-full"
+                        options={categories}
+                    />
+
+                    <InputError className="mt-2" message={errors.category} />
                 </div>
 
                 {/* {data.category === 'motor_vehicle' && <MotorVehicleForm data={data} setData={setData} errors={errors} />} */}
