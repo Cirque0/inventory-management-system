@@ -71,6 +71,7 @@ class ItemFormRequest extends FormRequest
             case 'ICT':
             case 'Office Equipment':
             case 'Furniture Fixture':
+            case 'Medical Equipment':
                 $additionalRules = [
                     'type' => ['string'],
                     'make' => ['string'],

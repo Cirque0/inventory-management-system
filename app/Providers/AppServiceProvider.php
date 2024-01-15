@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
             'ICT' => 'App\Models\ICT',
             'Office Equipment' => 'App\Models\OfficeEquipment',
             'Furniture Fixture' => 'App\Models\FurnitureFixture',
+            'Medical Equipment' => 'App\Models\MedicalEquipment',
         ]);
     }
 }

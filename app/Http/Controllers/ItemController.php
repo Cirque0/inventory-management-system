@@ -7,6 +7,7 @@ use App\Models\CommsEquipment;
 use App\Models\FurnitureFixture;
 use App\Models\ICT;
 use App\Models\Item;
+use App\Models\MedicalEquipment;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
 use App\Models\OfficeEquipment;
@@ -66,6 +67,10 @@ class ItemController extends Controller
 
             case 'Furniture Fixture':
                 $itemable = FurnitureFixture::create($request->only(['type', 'make', 'serial_num']));
+                break; 
+
+            case 'Medical Equipment':
+                $itemable = MedicalEquipment::create($request->only(['type', 'make', 'serial_num']));
                 break; 
         }
 
