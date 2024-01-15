@@ -11,6 +11,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
 import { useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function CreateItemForm({ className, categories }) {
     const { data, setData, post, reset, errors, processing, recentlySuccessful } = useForm({
@@ -35,6 +36,10 @@ export default function CreateItemForm({ className, categories }) {
             },
         });
     }
+
+    useEffect(() => {
+        reset('status');
+    }, [data.category])
 
     return (
         <section className={className}>
@@ -153,7 +158,7 @@ export default function CreateItemForm({ className, categories }) {
                             value={data.status}
                             onChange={(value) => setData('status', value)}
                             className="mt-1 block w-full"
-                            options={['Svc', 'Uns', 'BER']}
+                            options={data.category === 'Animal' ? ['Alive', 'Lnef', 'Ret', 'Exp'] : ['Svc', 'Uns', 'BER']}
                         />
                         
                         <InputError className="mt-2" message={errors.status} />
