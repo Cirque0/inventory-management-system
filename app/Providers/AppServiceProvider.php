@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
             'Water Craft' => 'App\Models\WaterCraft',
             'MPS Equipment' => 'App\Models\MPSEquipment',
             'Communications Equipment' => 'App\Models\CommsEquipment',
+            'Technical Scientific Equipment' => 'App\Models\TechSciEquipment',
         ]);
     }
 }

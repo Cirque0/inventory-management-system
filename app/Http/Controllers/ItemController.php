@@ -7,6 +7,7 @@ use App\Models\CommsEquipment;
 use App\Models\Item;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
+use App\Models\TechSciEquipment;
 use App\Models\WaterCraft;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
@@ -66,6 +67,15 @@ class ItemController extends Controller
 
             case 'Communications Equipment':
                 $itemable = CommsEquipment::create([
+                    'type' => $request->type,
+                    'make' => $request->make,
+                    'serial_num' => $request->serial_num,
+                ]);
+
+                break; 
+
+            case 'Technical Scientific Equipment':
+                $itemable = TechSciEquipment::create([
                     'type' => $request->type,
                     'make' => $request->make,
                     'serial_num' => $request->serial_num,

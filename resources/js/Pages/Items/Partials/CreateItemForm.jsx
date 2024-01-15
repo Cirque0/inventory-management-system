@@ -80,6 +80,7 @@ export default function CreateItemForm({ className, categories }) {
                         case "MPS Equipment":
                             return <MPSEquipmentForm data={data} setData={setData} errors={errors} />
                         case "Communications Equipment":
+                        case "Technical Scientific Equipment":
                             return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
                     }
                 })()}

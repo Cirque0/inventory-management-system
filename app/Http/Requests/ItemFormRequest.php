@@ -67,6 +67,7 @@ class ItemFormRequest extends FormRequest
                 break;
 
             case 'Communications Equipment':
+            case 'Technical Scientific Equipment':
                 $additionalRules = [
                     'type' => ['string'],
                     'make' => ['string'],
