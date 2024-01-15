@@ -1,4 +1,5 @@
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
+import WaterCraftForm from "@/Components/CategoryForms/WaterCraftForm";
 import Combobox from "@/Components/ComboBox";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
@@ -67,7 +68,15 @@ export default function CreateItemForm({ className, categories }) {
                     <InputError className="mt-2" message={errors.name} />
                 </div>
 
-                {data.category === 'motor_vehicle' && <MotorVehicleForm data={data} setData={setData} errors={errors} />}
+                {/* {data.category === 'motor_vehicle' && <MotorVehicleForm data={data} setData={setData} errors={errors} />} */}
+                {(() => {
+                    switch(data.category) {
+                        case "Motor Vehicle":
+                            return <MotorVehicleForm data={data} setData={setData} errors={errors} />
+                        case "Water Craft":
+                            return <WaterCraftForm data={data} setData={setData} errors={errors} />
+                    }
+                })()}
 
                 <div className="grid grid-cols-2 gap-x-2">
                     <div>
