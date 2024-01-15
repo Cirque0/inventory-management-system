@@ -32,7 +32,7 @@ export default function Combobox({ options, value, onChange, className }) {
                 </div>
                 <HeadlessCombobox.Options
                     className={
-                        "absolute z-50 w-full mt-2 py-1 bg-white rounded-lg shadow border"
+                        "absolute z-50 max-h-40 w-full mt-2 py-1 overflow-auto bg-white rounded-lg shadow border"
                     }
                 >
                     {filteredOptions.length === 0 && query !== "" ? (
