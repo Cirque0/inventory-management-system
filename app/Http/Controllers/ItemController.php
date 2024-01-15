@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemFormRequest;
 use App\Models\Item;
 use App\Models\MotorVehicle;
+use App\Models\MPSEquipment;
 use App\Models\WaterCraft;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
@@ -51,6 +52,16 @@ class ItemController extends Controller
                 ]);
 
                 break;
+
+            case 'MPS Equipment':
+                $itemable = MPSEquipment::create([
+                    'type' => $request->type,
+                    'make' => $request->make,
+                    'cal' => $request->cal,
+                    'serial_num' => $request->serial_num,
+                ]);
+
+                break; 
         }
 
         $item = new Item;

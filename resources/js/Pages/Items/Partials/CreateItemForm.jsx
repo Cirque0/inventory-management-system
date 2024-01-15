@@ -1,3 +1,4 @@
+import MPSEquipmentForm from "@/Components/CategoryForms/MPSEquipmentForm";
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
 import WaterCraftForm from "@/Components/CategoryForms/WaterCraftForm";
 import Combobox from "@/Components/ComboBox";
@@ -75,6 +76,8 @@ export default function CreateItemForm({ className, categories }) {
                             return <MotorVehicleForm data={data} setData={setData} errors={errors} />
                         case "Water Craft":
                             return <WaterCraftForm data={data} setData={setData} errors={errors} />
+                        case "MPS Equipment":
+                            return <MPSEquipmentForm data={data} setData={setData} errors={errors} />
                     }
                 })()}
 

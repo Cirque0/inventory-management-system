@@ -56,6 +56,15 @@ class ItemFormRequest extends FormRequest
                     'centerboard' => ['string'],
                 ];
                 break;
+
+            case 'MPS Equipment':
+                $additionalRules = [
+                    'type' => ['string'],
+                    'make' => ['string'],
+                    'cal' => ['string'],
+                    'serial_num' => ['string'],
+                ];
+                break;
         }
 
         return array_merge($generalRules, $additionalRules);
