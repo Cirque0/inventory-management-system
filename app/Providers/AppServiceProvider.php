@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             'Furniture Fixture' => 'App\Models\FurnitureFixture',
             'Medical Equipment' => 'App\Models\MedicalEquipment',
             'Other Machinery and Equipment' => 'App\Models\OtherEquipment',
+            'Disaster Response and Rescue Equipment' => 'App\Models\DRREquipment',
         ]);
     }
 }

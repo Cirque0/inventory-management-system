@@ -73,6 +73,7 @@ class ItemFormRequest extends FormRequest
             case 'Furniture Fixture':
             case 'Medical Equipment':
             case 'Other Machinery and Equipment':
+            case 'Disaster Response and Rescue Equipment':
                 $additionalRules = [
                     'type' => ['string'],
                     'make' => ['string'],

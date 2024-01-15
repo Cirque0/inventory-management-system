@@ -77,6 +77,10 @@ class ItemController extends Controller
             case 'Other Machinery and Equipment':
                 $itemable = OtherEquipment::create($request->only(['type', 'make', 'serial_num']));
                 break;
+
+            case 'Disaster Response and Rescue Equipment':
+                $itemable = OtherEquipment::create($request->only(['type', 'make', 'serial_num']));
+                break;
         }
 
         $item = new Item;
