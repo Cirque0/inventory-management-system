@@ -24,15 +24,15 @@ class ItemFormRequest extends FormRequest
     public function rules(): array
     {
         $generalRules = [
-            'category' => [Rule::in(array_keys(Relation::morphMap()))],
-            'name' => ['string'],
-            'acquisition_date' => ['date'],
-            'acquisition_cost' => ['integer'],
-            'source' => [Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],
-            'status' => [Rule::in(['Svc', 'Uns', 'BER', 'Alive', 'Lnef', 'Ret', 'Exp'])],
-            'quantity' => ['integer'],
-            'value' => ['integer'],
-            'location' => ['string'],
+            'category' => ['required', Rule::in(array_keys(Relation::morphMap()))],
+            'name' => ['required', 'string'],
+            'acquisition_date' => ['required', 'date'],
+            'acquisition_cost' => ['required', 'integer'],
+            'source' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],
+            'status' => ['required', Rule::in(['Svc', 'Uns', 'BER', 'Alive', 'Lnef', 'Ret', 'Exp', 'In good condition', 'For repair', 'For condemnation'])],
+            'quantity' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', 'integer'],
+            'value' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', 'integer'],
+            'location' => ['required', 'string'],
         ];
 
         switch($this->category) {
@@ -97,6 +97,19 @@ class ItemFormRequest extends FormRequest
                 $additionalRules = [
                     'type' => ['string'],
                     'make' => ['string'],
+                ];
+                break;
+            
+            case 'Buildings and Facilities':
+                $additionalRules = [
+                    'type' => ['required', Rule::in(['Temp', 'Perm', 'Semi Perm'])],
+                    'building_code' => ['required', 'string'],
+                    'description' => ['required', 'string'],
+                    'occupying_office_unit' => ['required', 'string'],
+                    'total_floor_area' => ['required', 'string'],
+                    'repair_date' => ['date'],
+                    'repair_cost' => ['integer'],
+                    'building_ownership' => ['required', 'string'],
                 ];
                 break;
         }

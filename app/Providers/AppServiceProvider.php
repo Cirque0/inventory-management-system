@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
             'Other Property Equipment' => 'App\Models\OtherPropertyEquipment',
             'Office Supplies' => 'App\Models\OfficeSupplies',
             'Quarters' => 'App\Models\Quarter',
+            'Buildings and Facilities' => 'App\Models\Facility',
         ]);
     }
 }

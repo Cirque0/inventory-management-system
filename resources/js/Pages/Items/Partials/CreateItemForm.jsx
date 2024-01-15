@@ -1,4 +1,5 @@
 import AnimalForm from "@/Components/CategoryForms/AnimalForm";
+import FacilitiesForm from "@/Components/CategoryForms/FacilitiesForm";
 import GenericEquipmentForm from "@/Components/CategoryForms/GenericEquipmentForm";
 import MPSEquipmentForm from "@/Components/CategoryForms/MPSEquipmentForm";
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
@@ -101,118 +102,125 @@ export default function CreateItemForm({ className, categories }) {
                             return <AnimalForm data={data} setData={setData} errors={errors} />
                         case "Quarters":
                             return <QuarterForm data={data} setData={setData} errors={errors} />
+                        case "Buildings and Facilities":
+                            return <FacilitiesForm data={data} setData={setData} errors={errors} />
                     }
                 })()}
 
-                <div className="grid grid-cols-2 gap-x-2">
-                    <div>
-                        <InputLabel htmlFor="acqusition_date" value="Acquisition Date" required />
+                {data.category !== "Buildings and Facilities" && (
+                    <>
+                        <div className="grid grid-cols-2 gap-x-2">
+                            <div>
+                                <InputLabel htmlFor="acqusition_date" value="Acquisition Date" required />
 
-                        <TextInput
-                            id="acquisition_date"
-                            type="date"
-                            className="mt-1 block w-full"
-                            value={data.acquisition_date}
-                            onChange={(e) => setData('acquisition_date', e.target.value)}
-                            required
-                        />
+                                <TextInput
+                                    id="acquisition_date"
+                                    type="date"
+                                    className="mt-1 block w-full"
+                                    value={data.acquisition_date}
+                                    onChange={(e) => setData('acquisition_date', e.target.value)}
+                                    required
+                                />
 
-                        <InputError className="mt-2" message={errors.acquisition_date} />
-                    </div>
+                                <InputError className="mt-2" message={errors.acquisition_date} />
+                            </div>
 
-                    <div>
-                        <InputLabel htmlFor="acquisition_cost" value="Acquisition Cost" required />
+                            <div>
+                                <InputLabel htmlFor="acquisition_cost" value="Acquisition Cost" required />
 
-                        <TextInput
-                            id="acquisition_cost"
-                            type="number"
-                            className="mt-1 block w-full"
-                            value={data.acquisition_cost}
-                            onChange={(e) => setData('acquisition_cost', e.target.value)}
-                            required
-                            min={0}
-                        />
+                                <TextInput
+                                    id="acquisition_cost"
+                                    type="number"
+                                    className="mt-1 block w-full"
+                                    value={data.acquisition_cost}
+                                    onChange={(e) => setData('acquisition_cost', e.target.value)}
+                                    required
+                                    min={0}
+                                />
 
-                        <InputError className="mt-2" message={errors.acquisition_cost} />
-                    </div>
-                </div>
+                                <InputError className="mt-2" message={errors.acquisition_cost} />
+                            </div>
+                        </div>
 
-                <div className="grid grid-cols-2 gap-x-2">
-                    <div>
-                        <InputLabel value="Source" required />
-                        
-                        <Combobox
-                            value={data.source}
-                            onChange={(value) => setData('source', value)}
-                            className="mt-1 block w-full"
-                            options={['Org', 'Don', 'Lnd', 'FAS']}
-                        />
-                        
-                        <InputError className="mt-2" message={errors.source} />
-                    </div>
+                        <div className="grid grid-cols-2 gap-x-2">
+                            <div>
+                                <InputLabel value="Source" required />
+                                
+                                <Combobox
+                                    value={data.source}
+                                    onChange={(value) => setData('source', value)}
+                                    className="mt-1 block w-full"
+                                    options={['Org', 'Don', 'Lnd', 'FAS']}
+                                />
+                                
+                                <InputError className="mt-2" message={errors.source} />
+                            </div>
 
-                    <div>
-                        <InputLabel value="Status" required />
-                        
-                        <Combobox
-                            value={data.status}
-                            onChange={(value) => setData('status', value)}
-                            className="mt-1 block w-full"
-                            options={data.category === 'Animal' ? ['Alive', 'Lnef', 'Ret', 'Exp'] : ['Svc', 'Uns', 'BER']}
-                        />
-                        
-                        <InputError className="mt-2" message={errors.status} />
-                    </div>
-                </div>
+                            <div>
+                                <InputLabel value="Status" required />
+                                
+                                <Combobox
+                                    value={data.status}
+                                    onChange={(value) => setData('status', value)}
+                                    className="mt-1 block w-full"
+                                    options={data.category === 'Animal' ? ['Alive', 'Lnef', 'Ret', 'Exp'] : ['Svc', 'Uns', 'BER']}
+                                />
+                                
+                                <InputError className="mt-2" message={errors.status} />
+                            </div>
+                        </div>
 
-                <div className="grid grid-cols-2 gap-x-2">
-                    <div>
-                        <InputLabel htmlFor="quantity" value="Quantity" required />
+                        <div className="grid grid-cols-2 gap-x-2">
+                            <div>
+                                <InputLabel htmlFor="quantity" value="Quantity" required />
 
-                        <TextInput
-                            id="quantity"
-                            type="number"
-                            className="mt-1 block w-full"
-                            value={data.quantity}
-                            onChange={(e) => setData('quantity', e.target.value)}
-                            required
-                            min={0}
-                        />
+                                <TextInput
+                                    id="quantity"
+                                    type="number"
+                                    className="mt-1 block w-full"
+                                    value={data.quantity}
+                                    onChange={(e) => setData('quantity', e.target.value)}
+                                    required
+                                    min={0}
+                                />
 
-                        <InputError className="mt-2" message={errors.quantity} />
-                    </div>
+                                <InputError className="mt-2" message={errors.quantity} />
+                            </div>
 
-                    <div>
-                        <InputLabel htmlFor="value" value="Value" required />
+                            <div>
+                                <InputLabel htmlFor="value" value="Value" required />
 
-                        <TextInput
-                            id="value"
-                            type="number"
-                            className="mt-1 block w-full"
-                            value={data.value}
-                            onChange={(e) => setData('value', e.target.value)}
-                            required
-                            min={0}
-                        />
+                                <TextInput
+                                    id="value"
+                                    type="number"
+                                    className="mt-1 block w-full"
+                                    value={data.value}
+                                    onChange={(e) => setData('value', e.target.value)}
+                                    required
+                                    min={0}
+                                />
 
-                        <InputError className="mt-2" message={errors.value} />
-                    </div>
-                </div>
+                                <InputError className="mt-2" message={errors.value} />
+                            </div>
+                        </div>
 
-                <div>
-                    <InputLabel htmlFor="location" value="Location" required />
+                        <div>
+                            <InputLabel htmlFor="location" value="Location" required />
 
-                    <TextInput
-                        id="location"
-                        type="text"
-                        className="mt-1 block w-full"
-                        value={data.location}
-                        onChange={(e) => setData('location', e.target.value)}
-                        required
-                    />
+                            <TextInput
+                                id="location"
+                                type="text"
+                                className="mt-1 block w-full"
+                                value={data.location}
+                                onChange={(e) => setData('location', e.target.value)}
+                                required
+                            />
 
-                    <InputError className="mt-2" message={errors.location} />
-                </div>
+                            <InputError className="mt-2" message={errors.location} />
+                        </div>
+                    </>
+                )}
+
                 
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Add item</PrimaryButton>

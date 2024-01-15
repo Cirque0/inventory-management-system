@@ -25,6 +25,11 @@ class Item extends Model
         'encoder_id',
     ];
 
+    protected $attributes = [
+        'quantity' => 0,
+        'value' => 0,
+    ];
+
     protected $casts = [
         'acquisition_date' => 'date',
     ];

@@ -6,6 +6,7 @@ use App\Http\Requests\ItemFormRequest;
 use App\Models\Animal;
 use App\Models\CommsEquipment;
 use App\Models\DRREquipment;
+use App\Models\Facility;
 use App\Models\FurnitureFixture;
 use App\Models\ICT;
 use App\Models\Item;
@@ -102,6 +103,10 @@ class ItemController extends Controller
             case 'Quarters':
                 $itemable = Quarter::create($request->only(['type', 'make']));
                 break;
+
+            case 'Buildings and Facilities':
+                $itemable = Facility::create($request->only(['type', 'building_code', 'description', 'occupying_office_unit', 'total_floor_area', 'repair_date', 'repair_cost', 'building_ownership']));
+                break;
         }
 
         $item = new Item;
@@ -112,11 +117,11 @@ class ItemController extends Controller
             'acquisition_cost',
             'source',
             'status',
-            'quantity',
-            'value',
             'location',
         ]));
 
+        $item->quantity = $request->quantity ?: 0;
+        $item->value = $request->quantity ?: 0;
         $item->itemable_type = $request->category;
         $item->itemable_id = $itemable->id;
         $item->encoder_id = Auth::id();
