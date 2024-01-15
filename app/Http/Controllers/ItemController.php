@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemFormRequest;
 use App\Models\CommsEquipment;
+use App\Models\FurnitureFixture;
 use App\Models\ICT;
 use App\Models\Item;
 use App\Models\MotorVehicle;
@@ -100,6 +101,11 @@ class ItemController extends Controller
                     'make' => $request->make,
                     'serial_num' => $request->serial_num,
                 ]);
+
+                break; 
+
+            case 'Furniture Fixture':
+                $itemable = FurnitureFixture::create($request->only(['type', 'make', 'serial_num']));
 
                 break; 
         }

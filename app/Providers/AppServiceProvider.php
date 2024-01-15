@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
             'Technical Scientific Equipment' => 'App\Models\TechSciEquipment',
             'ICT' => 'App\Models\ICT',
             'Office Equipment' => 'App\Models\OfficeEquipment',
+            'Furniture Fixture' => 'App\Models\FurnitureFixture',
         ]);
     }
 }
