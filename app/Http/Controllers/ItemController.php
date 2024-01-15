@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemFormRequest;
 use App\Models\Item;
 use App\Models\MotorVehicle;
+use App\Models\WaterCraft;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,35 +28,26 @@ class ItemController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'category' => [Rule::in(array_keys(Relation::morphMap()))],
-            'name' => ['string'],
-            'acquisition_date' => ['date'],
-            'acquisition_cost' => ['integer'],
-            'source' => [Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],
-            'status' => [Rule::in(['Svc', 'Uns', 'BER'])],
-            'quantity' => ['integer'],
-            'value' => ['integer'],
-            'location' => ['string'],
-        ]);
-
+    public function store(ItemFormRequest $request) {
         switch($request->category) {
-            case 'motor_vehicle':
-                $request->validate([
-                    'type' => ['string'],
-                    'make' => ['string'],
-                    'engine_num' => ['string'],
-                    'chassis_num' => ['string'],
-                    'plate_num' => ['string'],
-                ]);
-
+            case 'Motor Vehicle':
                 $itemable = MotorVehicle::create([
                     'type' => $request->type,
                     'make' => $request->make,
                     'engine_num' => $request->engine_num,
                     'chassis_num' => $request->chassis_num,
                     'plate_num' => $request->plate_num,
+                ]);
+                break;
+
+            case 'Water Craft':
+                $itemable = WaterCraft::create([
+                    'type' => $request->type,
+                    'make' => $request->make,
+                    'body_num' => $request->body_num,
+                    'starboard_side' => $request->starboard_side,
+                    'port_side' => $request->port_side,
+                    'centerboard' => $request->centerboard,
                 ]);
 
                 break;
