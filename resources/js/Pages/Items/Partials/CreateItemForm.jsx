@@ -1,3 +1,4 @@
+import AnimalForm from "@/Components/CategoryForms/AnimalForm";
 import GenericEquipmentForm from "@/Components/CategoryForms/GenericEquipmentForm";
 import MPSEquipmentForm from "@/Components/CategoryForms/MPSEquipmentForm";
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
@@ -88,6 +89,8 @@ export default function CreateItemForm({ className, categories }) {
                         case "Other Machinery and Equipment":
                         case "Disaster Response and Rescue Equipment":
                             return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
+                        case "Animal":
+                            return <AnimalForm data={data} setData={setData} errors={errors} />
                     }
                 })()}
 

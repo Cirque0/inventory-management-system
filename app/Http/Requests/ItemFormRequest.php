@@ -80,6 +80,16 @@ class ItemFormRequest extends FormRequest
                     'serial_num' => ['string'],
                 ];
                 break;
+
+            case 'Animal':
+                $additionalRules = [
+                    'type' => ['required', 'string'],
+                    'breed' => ['required', 'string'],
+                    'sex' => ['required', Rule::in(['Male', 'Female'])],
+                    'color' => ['string'],
+                    'microchip' => ['string'],
+                ];
+                break;
         }
 
         return array_merge($generalRules, $additionalRules);

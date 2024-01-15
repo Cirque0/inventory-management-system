@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemFormRequest;
+use App\Models\Animal;
 use App\Models\CommsEquipment;
+use App\Models\DRREquipment;
 use App\Models\FurnitureFixture;
 use App\Models\ICT;
 use App\Models\Item;
@@ -79,7 +81,11 @@ class ItemController extends Controller
                 break;
 
             case 'Disaster Response and Rescue Equipment':
-                $itemable = OtherEquipment::create($request->only(['type', 'make', 'serial_num']));
+                $itemable = DRREquipment::create($request->only(['type', 'make', 'serial_num']));
+                break;
+
+            case 'Animal':
+                $itemable = Animal::create($request->only(['type', 'breed', 'sex', 'color', 'microchip']));
                 break;
         }
 
