@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             'Animal' => 'App\Models\Animal',
             'Other Property Equipment' => 'App\Models\OtherPropertyEquipment',
             'Office Supplies' => 'App\Models\OfficeSupplies',
+            'Quarters' => 'App\Models\Quarter',
         ]);
     }
 }

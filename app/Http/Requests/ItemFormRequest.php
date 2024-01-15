@@ -92,6 +92,13 @@ class ItemFormRequest extends FormRequest
                     'microchip' => ['string'],
                 ];
                 break;
+
+            case 'Quarters':
+                $additionalRules = [
+                    'type' => ['string'],
+                    'make' => ['string'],
+                ];
+                break;
         }
 
         return array_merge($generalRules, $additionalRules);

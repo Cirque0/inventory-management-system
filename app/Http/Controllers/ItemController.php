@@ -16,6 +16,7 @@ use App\Models\OfficeEquipment;
 use App\Models\OfficeSupplies;
 use App\Models\OtherEquipment;
 use App\Models\OtherPropertyEquipment;
+use App\Models\Quarter;
 use App\Models\TechSciEquipment;
 use App\Models\WaterCraft;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -96,6 +97,10 @@ class ItemController extends Controller
 
             case 'Office Supplies':
                 $itemable = OfficeSupplies::create($request->only(['type', 'make', 'serial_num']));
+                break;
+
+            case 'Quarters':
+                $itemable = Quarter::create($request->only(['type', 'make']));
                 break;
         }
 

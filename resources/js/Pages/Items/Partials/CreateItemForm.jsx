@@ -2,6 +2,7 @@ import AnimalForm from "@/Components/CategoryForms/AnimalForm";
 import GenericEquipmentForm from "@/Components/CategoryForms/GenericEquipmentForm";
 import MPSEquipmentForm from "@/Components/CategoryForms/MPSEquipmentForm";
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
+import QuarterForm from "@/Components/CategoryForms/QuarterForm";
 import WaterCraftForm from "@/Components/CategoryForms/WaterCraftForm";
 import Combobox from "@/Components/ComboBox";
 import InputError from "@/Components/InputError";
@@ -93,6 +94,8 @@ export default function CreateItemForm({ className, categories }) {
                             return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
                         case "Animal":
                             return <AnimalForm data={data} setData={setData} errors={errors} />
+                        case "Quarters":
+                            return <QuarterForm data={data} setData={setData} errors={errors} />
                     }
                 })()}
 
