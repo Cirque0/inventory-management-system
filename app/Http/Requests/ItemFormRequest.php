@@ -29,7 +29,7 @@ class ItemFormRequest extends FormRequest
             'acquisition_date' => ['date'],
             'acquisition_cost' => ['integer'],
             'source' => [Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],
-            'status' => [Rule::in(['Svc', 'Uns', 'BER'])],
+            'status' => [Rule::in(['Svc', 'Uns', 'BER', 'Alive', 'Lnef', 'Ret', 'Exp'])],
             'quantity' => ['integer'],
             'value' => ['integer'],
             'location' => ['string'],
