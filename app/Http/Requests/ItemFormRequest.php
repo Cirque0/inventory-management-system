@@ -75,6 +75,7 @@ class ItemFormRequest extends FormRequest
             case 'Other Machinery and Equipment':
             case 'Disaster Response and Rescue Equipment':
             case 'Other Property Equipment':
+            case 'Office Supplies':
                 $additionalRules = [
                     'type' => ['string'],
                     'make' => ['string'],

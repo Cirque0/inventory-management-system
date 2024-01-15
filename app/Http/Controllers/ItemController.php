@@ -13,6 +13,7 @@ use App\Models\MedicalEquipment;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
 use App\Models\OfficeEquipment;
+use App\Models\OfficeSupplies;
 use App\Models\OtherEquipment;
 use App\Models\OtherPropertyEquipment;
 use App\Models\TechSciEquipment;
@@ -91,6 +92,10 @@ class ItemController extends Controller
 
             case 'Other Property Equipment':
                 $itemable = OtherPropertyEquipment::create($request->only(['type', 'make', 'serial_num']));
+                break;
+
+            case 'Office Supplies':
+                $itemable = OfficeSupplies::create($request->only(['type', 'make', 'serial_num']));
                 break;
         }
 

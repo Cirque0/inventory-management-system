@@ -89,6 +89,7 @@ export default function CreateItemForm({ className, categories }) {
                         case "Other Machinery and Equipment":
                         case "Disaster Response and Rescue Equipment":
                         case "Other Property Equipment":
+                        case "Office Supplies":
                             return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
                         case "Animal":
                             return <AnimalForm data={data} setData={setData} errors={errors} />
