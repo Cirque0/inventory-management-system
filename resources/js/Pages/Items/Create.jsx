@@ -5,7 +5,6 @@ import Card from "@/Components/Card";
 import CreateItemForm from "./Partials/CreateItemForm";
 
 export default function Create({ auth, categories }) {
-    console.log(categories)
     return (
         <Authenticated
             user={auth.user}
