@@ -97,7 +97,7 @@ export default function CreateItemForm({ className, categories }) {
                         case "Other Property Equipment":
                         case "Office Supplies":
                             return <GenericEquipmentForm data={data} setData={setData} errors={errors} />
-                        case "Animal":
+                        case "Work/Zoo Animals":
                             return <AnimalForm data={data} setData={setData} errors={errors} />
                         case "Quarters":
                             return <QuarterForm data={data} setData={setData} errors={errors} />
@@ -162,7 +162,7 @@ export default function CreateItemForm({ className, categories }) {
                                     value={data.status}
                                     onChange={(value) => setData('status', value)}
                                     className="mt-1 block w-full"
-                                    options={data.category === 'Animal' ? ['Alive', 'Lnef', 'Ret', 'Exp'] : ['Svc', 'Uns', 'BER']}
+                                    options={data.category === 'Work/Zoo Animals' ? ['Alive', 'Lnef', 'Ret', 'Exp'] : ['Svc', 'Uns', 'BER']}
                                 />
                                 
                                 <InputError className="mt-2" message={errors.status} />

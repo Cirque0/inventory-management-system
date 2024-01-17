@@ -83,7 +83,7 @@ class ItemFormRequest extends FormRequest
                 ];
                 break;
 
-            case 'Animal':
+            case 'Work/Zoo Animals':
                 $additionalRules = [
                     'type' => ['required', 'string'],
                     'breed' => ['required', 'string'],

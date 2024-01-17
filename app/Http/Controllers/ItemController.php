@@ -127,7 +127,7 @@ class ItemController extends Controller
                 $itemable = DRREquipment::create($request->only(['type', 'make', 'serial_num']));
                 break;
 
-            case 'Animal':
+            case 'Work/Zoo Animals':
                 $itemable = Animal::create($request->only(['type', 'breed', 'sex', 'color', 'microchip']));
                 break;
 
