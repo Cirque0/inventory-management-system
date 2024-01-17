@@ -13,11 +13,13 @@ export default function Items({ auth, items }) {
         >
             <Head title="Items" />
             <Container>
-                <div>
-                    <Link href={route('items.create')}>
-                        <PrimaryButton>Add an item</PrimaryButton>
-                    </Link>
-                </div>
+                {auth.user.role_id === 1 && (
+                    <div>
+                        <Link href={route('items.create')}>
+                            <PrimaryButton>Add an item</PrimaryButton>
+                        </Link>
+                    </div>
+                )}
                 
                 <Card>
                     <Card.Header>All Items</Card.Header>

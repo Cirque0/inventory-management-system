@@ -51,7 +51,6 @@ export default function UpdateItemForm({ className, item }) {
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
                         required
-                        isFocused
                         autoComplete="name"
                     />
 
