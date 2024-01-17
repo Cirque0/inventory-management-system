@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import DeleteUserForm from './Partials/DeleteUserForm';
+import Container from '@/Components/Container';
 
 export default function Edit({ auth, account }) {
     return (
@@ -12,7 +13,7 @@ export default function Edit({ auth, account }) {
         >
             <Head title={"Edit Account / " + account.name} />
 
-            <div className="flex flex-col py-12 sm:px-24 px-4 gap-4">
+            <Container>
                 <div className='flex flex-col bg-white rounded-lg p-4 gap-4 shadow'>
                     <UpdateProfileInformationForm
                         account={account}
@@ -33,7 +34,7 @@ export default function Edit({ auth, account }) {
                         className="max-w-xl"
                     />
                 </div>
-            </div>
+            </Container>
         </AuthenticatedLayout>
     )
 }

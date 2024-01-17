@@ -5,6 +5,7 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import CreateUserForm from './Partials/CreateUserForm';
+import Container from '@/Components/Container';
 
 export default function Accounts({ auth, accounts }) {
     const [showCreateForm, setShowCreateForm] = useState(false);
@@ -16,7 +17,7 @@ export default function Accounts({ auth, accounts }) {
         >
             <Head title="Accounts" />
 
-            <div className="flex flex-col py-12 sm:px-24 px-4 gap-4">
+            <Container>
 
                 <Link href={route('accounts.create')}>
                     <PrimaryButton>Create an account</PrimaryButton>
@@ -33,7 +34,7 @@ export default function Accounts({ auth, accounts }) {
                         <span className='bg-gray-50 rounded-lg p-4 italic'>No accounts found.</span>
                     )}
                 </div>
-            </div>
+            </Container>
         </AuthenticatedLayout>
     )
 }
@@ -55,11 +56,8 @@ function Account({ account }) {
     }
     
     return (
-        <div className="flex flex-col bg-gray-50 rounded-lg">
+        <div className="flex flex-col max-w-xl bg-gray-50 rounded-lg">
             <div className="flex">
-                <span className="flex justify-end items-center w-20 p-4 font-bold">
-                    {account.id}
-                </span>
                 <div className="flex flex-col p-4">
                     <span className="font-bold">{account.name}</span>
                     <span className="text-sm">{account.email}</span>

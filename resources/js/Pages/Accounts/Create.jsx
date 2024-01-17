@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import CreateUserForm from './Partials/CreateUserForm';
+import Container from '@/Components/Container';
 
 export default function Create({ auth }) {
     return (
@@ -10,11 +11,11 @@ export default function Create({ auth }) {
         >
             <Head title={"Create an account"} />
 
-            <div className="flex flex-col py-12 sm:px-24 px-4 gap-4">
+            <Container>
                 <div className='flex flex-col bg-white rounded-lg p-4 gap-4 shadow'>
                     <CreateUserForm className='max-w-xl' />
                 </div>
-            </div>
+            </Container>
         </AuthenticatedLayout>
     )
 }
