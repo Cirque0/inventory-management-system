@@ -55,19 +55,17 @@ function Account({ account }) {
     
     return (
         <div className="flex flex-col max-w-xl bg-gray-50 rounded-lg">
-            <div className="flex">
-                <div className="flex flex-col p-4">
-                    <span className="font-bold">{account.name}</span>
-                    <span className="text-sm">{account.email}</span>
+            <div className="flex flex-col p-4">
+                <span className="font-bold">{account.name}</span>
+                <span className="text-sm">{account.email}</span>
 
-                    <div className="flex mt-4 gap-2">
-                        <Link href={route('accounts.edit', {id: account.id})}>
-                            <SecondaryButton>Edit Account</SecondaryButton>
-                        </Link>
-                        <DangerButton onClick={() => setConfirmDelete(true)}>Delete Account</DangerButton>
-                    </div>
-
+                <div className="flex justify-end mt-4 gap-2">
+                    <Link href={route('accounts.edit', {id: account.id})}>
+                        <SecondaryButton>Edit Account</SecondaryButton>
+                    </Link>
+                    <DangerButton onClick={() => setConfirmDelete(true)}>Delete Account</DangerButton>
                 </div>
+
             </div>
 
             {confirmDelete && (
