@@ -21,9 +21,9 @@ class Facility extends Model
         'building_ownership',
     ];
 
-    protected $casts = [
-        'repair_date' => 'date',
-    ];
+    // protected $casts = [
+    //     'repair_date' => 'date',
+    // ];
 
     public function item(): MorphOne
     {

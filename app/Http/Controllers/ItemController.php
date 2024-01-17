@@ -42,6 +42,12 @@ class ItemController extends Controller
         ]);
     }
 
+    public function edit(string $id) {
+        return Inertia::render('Items/Edit', [
+            'item' => Item::with('itemable')->find($id),
+        ]);
+    }
+
     public function store(ItemFormRequest $request) {
         switch($request->category) {
             case 'Motor Vehicle':

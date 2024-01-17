@@ -30,9 +30,9 @@ class Item extends Model
         'value' => 0,
     ];
 
-    protected $casts = [
-        'acquisition_date' => 'date',
-    ];
+    // protected $casts = [
+    //     'acquisition_date' => 'date',
+    // ];
 
     public function itemable(): MorphTo
     {

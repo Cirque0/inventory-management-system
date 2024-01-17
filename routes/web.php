@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/items', [ItemController::class, 'show'])->name('items.show');
     Route::get('/items/add', [ItemController::class, 'create'])->name('items.create');
+    Route::get('/items/{id}', [ItemController::class, 'edit'])->name('items.edit');
     Route::post('/items/add', [ItemController::class, 'store'])->name('items.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
