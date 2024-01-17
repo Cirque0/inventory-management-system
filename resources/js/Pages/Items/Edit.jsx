@@ -10,7 +10,7 @@ export default function Edit({ auth, item }) {
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">View Item Details</h2>}
         >
-            <Head title="Add an Item" />
+            <Head title="View Item Details" />
             <Container>
                 <Card>
                     <UpdateItemForm
