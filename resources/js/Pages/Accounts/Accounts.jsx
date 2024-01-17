@@ -4,12 +4,9 @@ import DangerButton from '@/Components/DangerButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import CreateUserForm from './Partials/CreateUserForm';
 import Container from '@/Components/Container';
 
 export default function Accounts({ auth, accounts }) {
-    const [showCreateForm, setShowCreateForm] = useState(false);
-
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -18,10 +15,11 @@ export default function Accounts({ auth, accounts }) {
             <Head title="Accounts" />
 
             <Container>
-
-                <Link href={route('accounts.create')}>
-                    <PrimaryButton>Create an account</PrimaryButton>
-                </Link>
+                <div>
+                    <Link href={route('accounts.create')}>
+                        <PrimaryButton>Create an account</PrimaryButton>
+                    </Link>
+                </div>
 
                 <div className='flex flex-col bg-white rounded-lg p-4 gap-4 shadow'>
                     <header>

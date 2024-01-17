@@ -13,9 +13,12 @@ export default function Items({ auth, items }) {
         >
             <Head title="Items" />
             <Container>
-                <Link href={route('items.create')}>
-                    <PrimaryButton>Add an item</PrimaryButton>
-                </Link>
+                <div>
+                    <Link href={route('items.create')}>
+                        <PrimaryButton>Add an item</PrimaryButton>
+                    </Link>
+                </div>
+                
                 <Card>
                     <Card.Header>All Items</Card.Header>
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
