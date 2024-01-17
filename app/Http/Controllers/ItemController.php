@@ -48,6 +48,39 @@ class ItemController extends Controller
         ]);
     }
 
+    public function update(ItemFormRequest $request, string $id) {
+        $item = Item::find($id);
+        $itemable = $item->itemable;
+
+        $item->fill($request->only([
+            'name',
+            'acquisition_date',
+            'acquisition_cost',
+            'source',
+            'status',
+            'location',
+        ]));
+
+        $item->quantity = $request->quantity ?: 1;
+        $item->value = $request->value ?: $request->acquisition_cost;
+        $item->save();
+
+        $itemable->fill($request->except([
+            'name',
+            'category',
+            'acquisition_date',
+            'acquisition_cost',
+            'source',
+            'status',
+            'quantity',
+            'value',
+            'location',
+        ]));
+        $itemable->save();
+
+        return back();
+    }
+
     public function store(ItemFormRequest $request) {
         switch($request->category) {
             case 'Motor Vehicle':

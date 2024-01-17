@@ -33,7 +33,6 @@ export default function CreateItemForm({ className, categories }) {
         post(route('items.store'), {
             onSuccess: () => {
                 reset();
-                resetMore();
             },
         });
     }

@@ -107,8 +107,8 @@ class ItemFormRequest extends FormRequest
                     'description' => ['required', 'string'],
                     'occupying_office_unit' => ['required', 'string'],
                     'total_floor_area' => ['required', 'string'],
-                    'repair_date' => ['date'],
-                    'repair_cost' => ['integer'],
+                    'repair_date' => ['nullable', 'date'],
+                    'repair_cost' => ['nullable', 'integer'],
                     'building_ownership' => ['required', 'string'],
                 ];
                 break;

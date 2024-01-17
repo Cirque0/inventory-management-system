@@ -15,7 +15,7 @@ import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
 
 export default function UpdateItemForm({ className, item }) {
-    const { data, setData, post, reset, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, patch, reset, errors, processing, recentlySuccessful } = useForm({
         ...item,
         category: item.itemable_type,
         ...item.itemable,
@@ -24,10 +24,9 @@ export default function UpdateItemForm({ className, item }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('items.store'), {
+        patch(route('items.update', {id: item.id}), {
             onSuccess: () => {
                 reset();
-                resetMore();
             },
         });
     }
