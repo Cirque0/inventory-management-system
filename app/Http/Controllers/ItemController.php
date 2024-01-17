@@ -169,4 +169,15 @@ class ItemController extends Controller
 
         return Redirect::route('items.show');
     }
+
+    public function destroy(string $id) {
+        $item = Item::find($id);
+
+        $itemable = $item->itemable;
+
+        $item->delete();
+        $itemable->delete();
+
+        return Redirect::route('items.show');
+    }
 }

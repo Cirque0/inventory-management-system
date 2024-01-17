@@ -34,7 +34,6 @@ export default function Item({ item }) {
                         <Link href={route('items.edit', {id: item.id})} preserveScroll>
                             <SecondaryButton>View</SecondaryButton>
                         </Link>
-                        <DangerButton>Delete Item</DangerButton>
                     </div>
                 </div>
             </div>

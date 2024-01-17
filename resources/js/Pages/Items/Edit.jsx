@@ -3,6 +3,7 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import Container from "@/Components/Container";
 import Card from "@/Components/Card";
 import UpdateItemForm from "./Partials/UpdateItemForm";
+import DeleteItemForm from "./Partials/DeleteItemForm";
 
 export default function Edit({ auth, item }) {
     return (
@@ -17,6 +18,9 @@ export default function Edit({ auth, item }) {
                         className="max-w-xl"
                         item={item}
                     />
+                </Card>
+                <Card>
+                    <DeleteItemForm className="max-w-xl" item={item} />
                 </Card>
             </Container>
         </Authenticated>
