@@ -31,14 +31,14 @@ export default function Authenticated({ user, header, children }) {
                             <ResponsiveNavLink href={route('accounts.show')} active={route().current('accounts.*')}>
                                 Accounts
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink href='#'>
+                            <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
                                 Requests
                             </ResponsiveNavLink>
                         </>
                     )}
 
                     {user.role_id === 2 && (
-                        <ResponsiveNavLink href='#'>
+                        <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
                             Your Requests
                         </ResponsiveNavLink>
                     )}
@@ -75,19 +75,19 @@ export default function Authenticated({ user, header, children }) {
                                     <ResponsiveNavLink href={route('accounts.show')} active={route().current('accounts.*')}>
                                         Accounts
                                     </ResponsiveNavLink>
-                                    <ResponsiveNavLink href='#'>
+                                    <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
                                         Requests
                                     </ResponsiveNavLink>
                                 </>
                             )}
 
                             {user.role_id === 2 && (
-                                <ResponsiveNavLink href='#'>
+                                <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
                                     Your Requests
                                 </ResponsiveNavLink>
                             )}
 
-                            <ResponsiveNavLink href='#'>
+                            <ResponsiveNavLink href={route('items.show')} active={route().current('items.*')}>
                                 Items
                             </ResponsiveNavLink>
                         </div>

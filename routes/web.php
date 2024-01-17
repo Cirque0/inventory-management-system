@@ -49,6 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
     Route::post('/items/add', [ItemController::class, 'store'])->name('items.store');
 
+    Route::get('/requests', [RequestController::class, 'show'])->name('requests.show');
     Route::post('/requests', [RequestController::class, 'store'])->name('requests.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
