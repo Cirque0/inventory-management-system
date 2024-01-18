@@ -13,7 +13,7 @@ class RequestController extends Controller
     //
     public function show() {
         return Inertia::render('Requests/Requests', [
-            'requests' => Auth::user()->role_id === 1 ? RequestModel::orderBy('id', 'desc')->get() : Auth::user()->requests,
+            'requests' => Auth::user()->role_id === 1 ? RequestModel::with('item', 'requester')->orderBy('id', 'desc')->get() : Auth::user()->requests->load('item', 'requester'),
         ]);
     }
 
