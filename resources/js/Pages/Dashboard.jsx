@@ -1,8 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import StatCard from '@/Components/StatCard';
+import Card from '@/Components/Card';
+import Request from '@/Components/Request';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, pending_requests, total_items, total_categories, total_out_of_stock }) {
+    const isAdmin = auth.user.role_id === 1;
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -17,7 +21,7 @@ export default function Dashboard({ auth }) {
                             Total Items
                         </StatCard.Header>
                         <StatCard.Content>
-                            142
+                            {total_items}
                         </StatCard.Content>
                     </StatCard>
 
@@ -26,7 +30,7 @@ export default function Dashboard({ auth }) {
                             Total Categories
                         </StatCard.Header>
                         <StatCard.Content>
-                            16
+                            {total_categories}
                         </StatCard.Content>
                     </StatCard>
 
@@ -35,21 +39,25 @@ export default function Dashboard({ auth }) {
                             Out of Stock
                         </StatCard.Header>
                         <StatCard.Content>
-                            4
+                            {total_out_of_stock}
                         </StatCard.Content>
                     </StatCard>
                 </div>
 
-                <div className='flex flex-col bg-white rounded-lg p-4 gap-4 shadow'>
-                    <header>
-                        <h2 className="text-lg font-medium text-gray-900">Pending Requests</h2>
-                    </header>
-                    <div className='grid grid-cols-3 gap-4'>
-                        <div className="bg-gray-100 rounded h-40">1</div>
-                        <div className="bg-gray-100 rounded h-40">2</div>
-                        <div className="bg-gray-100 rounded h-40">3</div>
-                    </div>
-                </div>
+                {isAdmin && (
+                    <Card>
+                        <Card.Header>Pending requests</Card.Header>
+                        <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
+                            {pending_requests.length ? (
+                                pending_requests.map((request) => (
+                                    <Request key={request.id} request={request} isAdmin={isAdmin} />
+                                ))
+                            ) : (
+                                <span className="italic">There are no pending requests right now.</span>
+                            )}
+                        </div>
+                    </Card>
+                )}
             </div>
         </AuthenticatedLayout>
     );
