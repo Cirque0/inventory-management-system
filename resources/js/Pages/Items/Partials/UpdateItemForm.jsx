@@ -24,11 +24,7 @@ export default function UpdateItemForm({ className, item }) {
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('items.update', {id: item.id}), {
-            onSuccess: () => {
-                reset();
-            },
-        });
+        patch(route('items.update', {id: item.id}));
     }
 
     useEffect(() => {
