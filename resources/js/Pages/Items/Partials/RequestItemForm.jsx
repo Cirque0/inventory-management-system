@@ -60,7 +60,7 @@ export default function RequestItemForm({ item, className = "" }) {
                 </PrimaryButton>
             </form>
 
-            <InputError className="mt-2" message={errors.quantity} />
+            <InputError className="mt-2" message={errors.item_id || errors.quantity} />
         </section>
     );
 }

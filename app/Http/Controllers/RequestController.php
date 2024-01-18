@@ -23,6 +23,11 @@ class RequestController extends Controller
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'item_id' => ['required', 'exists:items,id'],
+            'quantity' => ['required', 'gt:0'],
+        ]);
+        
         $requestModel = new RequestModel;
 
         $requestModel->fill($request->only('item_id', 'quantity'));
