@@ -6,6 +6,7 @@ import UpdateItemForm from "./Partials/UpdateItemForm";
 import DeleteItemForm from "./Partials/DeleteItemForm";
 import ItemDetails from "./Partials/ItemDetails";
 import RequestItemForm from "./Partials/RequestItemForm";
+import Request from "@/Components/Request";
 
 export default function Edit({ auth, item }) {
     const {id, created_at, updated_at, ...itemable } = item.itemable;
@@ -27,6 +28,18 @@ export default function Edit({ auth, item }) {
 
                 {auth.user.role_id === 1 && (
                     <>
+                        <Card>
+                            <Card.Header>Requests for this item</Card.Header>
+                            <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
+                                {item.requests.length ? (
+                                    item.requests.map((request) => (
+                                        <Request key={request.id} request={{...request, item}} />
+                                    ))
+                                ) : (
+                                    <span className="italic">There are currently no requests for this item.</span>
+                                )}
+                            </div>
+                        </Card>
                         <Card>
                             <UpdateItemForm
                                 className="max-w-xl"

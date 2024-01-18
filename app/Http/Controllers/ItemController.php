@@ -44,7 +44,10 @@ class ItemController extends Controller
 
     public function edit(string $id) {
         return Inertia::render('Items/Edit', [
-            'item' => Item::with('itemable')->find($id),
+            'item' => Item::with([
+                'itemable',
+                'requests' => ['requester']
+            ])->find($id),
         ]);
     }
 
