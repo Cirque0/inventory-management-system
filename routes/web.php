@@ -51,6 +51,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/requests', [RequestController::class, 'show'])->name('requests.show');
     Route::post('/requests', [RequestController::class, 'store'])->name('requests.store');
+    Route::patch('/requests/approve', [RequestController::class, 'approve'])->name('requests.approve');
+    Route::patch('/requests/deny', [RequestController::class, 'deny'])->name('requests.deny');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

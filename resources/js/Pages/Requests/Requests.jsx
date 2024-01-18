@@ -17,9 +17,13 @@ export default function Items({ auth, requests }) {
                 <Card>
                     <Card.Header>{auth.user.role_id === 1 ? "All Requests" : "Your Requests"}</Card.Header>
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
-                        {requests.map((request) => (
-                            <Request key={request.id} request={request} isAdmin={auth.user.role_id == 1} />
-                        ))}
+                        {requests.length ? (
+                            requests.map((request) => (
+                                <Request key={request.id} request={request} isAdmin={auth.user.role_id == 1} />
+                            ))
+                        ) : (
+                            <span className="italic">No requests found.</span>
+                        )}
                     </div>
                 </Card>
             </Container>

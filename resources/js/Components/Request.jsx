@@ -1,6 +1,8 @@
 import PrimaryButton from "./PrimaryButton";
 import DangerButton from "./DangerButton";
 import { CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useForm } from "@inertiajs/react";
+import InputError from "./InputError";
 
 const status = {
     pending: (
@@ -21,6 +23,18 @@ const status = {
 }
 
 export default function Request({ request, isAdmin = false }) {
+    const {patch, processing, errors} = useForm({
+        request_id: request.id,
+    });
+
+    const approve = () => {
+        patch(route('requests.approve'));
+    }
+
+    const deny = () => {
+        patch(route('requests.deny'));
+    }
+
     return (
         <div className="flex flex-col p-4 bg-gray-50 rounded-lg">
             <span className="text-xs uppercase tracking-wider">
@@ -45,16 +59,20 @@ export default function Request({ request, isAdmin = false }) {
 
                 {(isAdmin && request.status === 'pending') && (
                     <div className="flex justify-end gap-2">
-                        <PrimaryButton className="bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500">
+                        <PrimaryButton onClick={approve} className="bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500" disabled={processing}>
                             <CheckIcon className="h-4 w-4" />
                             <span className="sm:block hidden">Approve</span>
                         </PrimaryButton>
-                        <DangerButton>
+                        <DangerButton onClick={deny} disabled={processing}>
                             <XMarkIcon className="h-4 w-4" />
                             <span className="sm:block hidden">Deny</span>
                         </DangerButton>
                     </div>
                 )}
+            </div>
+            
+            <div className="flex justify-end">
+                <InputError className="mt-2" message={errors.request_id} />
             </div>
         </div>
     );
