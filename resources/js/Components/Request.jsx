@@ -1,8 +1,13 @@
 import PrimaryButton from "./PrimaryButton";
 import DangerButton from "./DangerButton";
-import { CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChatBubbleLeftEllipsisIcon, CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useForm } from "@inertiajs/react";
 import InputError from "./InputError";
+import { useState } from "react";
+import Modal from "./Modal";
+import SecondaryButton from "./SecondaryButton";
+import InputLabel from "./InputLabel";
+import TextArea from "./TextArea";
 
 const status = {
     pending: (
@@ -23,16 +28,34 @@ const status = {
 }
 
 export default function Request({ request, isAdmin = false }) {
-    const {patch, processing, errors} = useForm({
+    const { data, setData, reset, patch, processing, errors } = useForm({
         request_id: request.id,
+        remarks: '',
     });
+    const [confirmingApprove, setConfirmingApprove] = useState(false);
+    const [confirmingDeny, setConfirmingDeny] = useState(false);
+    const [showRemarks, setShowRemarks] = useState(false);
+
+    const closeApproveModal = () => {
+        setConfirmingApprove(false);
+        reset();
+    }
+
+    const closeDenyModal = () => {
+        setConfirmingDeny(false);
+        reset();
+    }
 
     const approve = () => {
-        patch(route('requests.approve'));
+        patch(route('requests.approve'), {
+            onFinish: () => closeApproveModal(),
+        });
     }
 
     const deny = () => {
-        patch(route('requests.deny'));
+        patch(route('requests.deny'), {
+            onFinish: () => closeDenyModal(),
+        });
     }
 
     return (
@@ -59,21 +82,98 @@ export default function Request({ request, isAdmin = false }) {
 
                 {(isAdmin && request.status === 'pending') && (
                     <div className="flex justify-end gap-2">
-                        <PrimaryButton onClick={approve} className="bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500" disabled={processing}>
+                        <PrimaryButton onClick={() => setConfirmingApprove(true)} className="gap-1 bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500">
                             <CheckIcon className="h-4 w-4" />
                             <span className="sm:block hidden">Approve</span>
                         </PrimaryButton>
-                        <DangerButton onClick={deny} disabled={processing}>
+                        <DangerButton onClick={() => setConfirmingDeny(true)} className="gap-1">
                             <XMarkIcon className="h-4 w-4" />
                             <span className="sm:block hidden">Deny</span>
                         </DangerButton>
                     </div>
+                )}
+
+                {request.status !== 'pending' && (
+                    <SecondaryButton className="gap-1" onClick={() => setShowRemarks(true)}>
+                        <ChatBubbleLeftEllipsisIcon className="h-4 w-4" />
+                        Remarks
+                    </SecondaryButton>
                 )}
             </div>
             
             <div className="flex justify-end">
                 <InputError className="mt-2" message={errors.request_id} />
             </div>
+
+            <Modal show={confirmingApprove} onClose={closeApproveModal}>
+                <form className="p-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Are you sure you want to approve this request?
+                    </h2>
+
+                    <InputLabel htmlFor={'remarks'} value={'Remarks (optional):'} />
+                    <TextArea
+                        id='remarks'
+                        className={'w-full resize-none'}
+                        value={data.remarks}
+                        onChange={(e) => setData('remarks', e.target.value)}
+                    />
+                    {/* <p className="mt-1 text-sm text-gray-600">
+                        Once this account is deleted, all of its resources and data will be permanently deleted.
+                    </p> */}
+
+                    <div className="mt-6 flex justify-end gap-2">
+                        <SecondaryButton onClick={closeApproveModal}>Cancel</SecondaryButton>
+
+                        <PrimaryButton onClick={approve} className="gap-1 bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500" disabled={processing}>
+                            <CheckIcon className="h-4 w-4" />
+                            <span className="sm:block hidden">Approve</span>
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </Modal>
+
+            <Modal show={confirmingDeny} onClose={closeDenyModal}>
+                <form className="p-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Are you sure you want to approve this request?
+                    </h2>
+
+                    <InputLabel htmlFor={'remarks'} value={'Remarks (optional):'} />
+                    <TextArea
+                        id='remarks'
+                        className={'w-full resize-none'}
+                        value={data.remarks}
+                        onChange={(e) => setData('remarks', e.target.value)}
+                    />
+                    {/* <p className="mt-1 text-sm text-gray-600">
+                        Once this account is deleted, all of its resources and data will be permanently deleted.
+                    </p> */}
+
+                    <div className="mt-6 flex justify-end gap-2">
+                        <SecondaryButton onClick={closeDenyModal}>Cancel</SecondaryButton>
+
+                        <DangerButton className="gap-1" onClick={deny} disabled={processing}>
+                            <XMarkIcon className="h-4 w-4" />
+                            <span className="sm:block hidden">Deny</span>
+                        </DangerButton>
+                    </div>
+                </form>
+            </Modal>
+
+            <Modal show={showRemarks} onClose={() => setShowRemarks(false)}>
+                <div className="p-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Remarks
+                    </h2>
+
+                    <span>{request.remarks || 'No remarks.'}</span>
+
+                    <div className="mt-6 flex justify-end gap-2">
+                        <SecondaryButton onClick={() => setShowRemarks(false)}>Close</SecondaryButton>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 }

@@ -36,6 +36,7 @@ class RequestController extends Controller
     public function approve(Request $request) {
         $request->validate([
             'request_id' => ['required', 'exists:requests,id'],
+            'remarks' => ['nullable', 'string'],
         ]);
 
         $requestModel = RequestModel::find($request->request_id);
@@ -43,11 +44,12 @@ class RequestController extends Controller
         
         if($item->quantity >= $requestModel->quantity) {
             $requestModel->status = 'approved';
+            $requestModel->remarks = $request->remarks;
             $requestModel->save();
     
             $item->quantity = $item->quantity - $requestModel->quantity;
             $item->save();
-            
+
             return back();
         }
         else {
@@ -58,10 +60,12 @@ class RequestController extends Controller
     public function deny(Request $request) {
         $request->validate([
             'request_id' => ['required', 'exists:requests,id'],
+            'remarks' => ['nullable', 'string'],
         ]);
 
         $requestModel = RequestModel::find($request->request_id);
         $requestModel->status = 'denied';
+        $requestModel->remarks = $request->remarks;
         $requestModel->save();
 
         return back();
