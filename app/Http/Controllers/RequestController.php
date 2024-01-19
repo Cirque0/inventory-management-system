@@ -75,4 +75,21 @@ class RequestController extends Controller
 
         return back();
     }
+
+    public function return_item(Request $request) {
+        $request->validate([
+            'request_id' => ['required', 'exists:requests,id'],
+        ]);
+
+        $requestModel = RequestModel::find($request->request_id);
+        $requestModel->status = 'returned';
+
+        $item = $requestModel->item;
+        $item->quantity = $item->quantity + $requestModel->quantity;
+
+        $item->save();
+        $requestModel->save();
+
+        return back();
+    }
 }

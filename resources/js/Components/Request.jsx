@@ -1,6 +1,6 @@
 import PrimaryButton from "./PrimaryButton";
 import DangerButton from "./DangerButton";
-import { ChatBubbleLeftEllipsisIcon, CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowUturnLeftIcon, ChatBubbleLeftEllipsisIcon, CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useForm } from "@inertiajs/react";
 import InputError from "./InputError";
 import { useState } from "react";
@@ -25,6 +25,11 @@ const status = {
             <XMarkIcon className="w-4 h-4" /> Denied
         </span>
     ),
+    returned: (
+        <span className="flex items-center gap-1 py-2 px-4 bg-cyan-300 text-cyan-800 font-bold text-xs uppercase tracking-widest rounded-lg">
+            <ArrowUturnLeftIcon className="w-4 h-4" /> Returned
+        </span>
+    ),
 }
 
 export default function Request({ request, isAdmin = false }) {
@@ -34,6 +39,7 @@ export default function Request({ request, isAdmin = false }) {
     });
     const [confirmingApprove, setConfirmingApprove] = useState(false);
     const [confirmingDeny, setConfirmingDeny] = useState(false);
+    const [confirmingReturn, setConfirmingReturn] = useState(false);
     const [showRemarks, setShowRemarks] = useState(false);
 
     const closeApproveModal = () => {
@@ -58,6 +64,12 @@ export default function Request({ request, isAdmin = false }) {
         });
     }
 
+    const returnItem = () => {
+        patch(route('requests.return'), {
+            onFinish: () => setConfirmingReturn(false),
+        });
+    }
+
     return (
         <div className="flex flex-col p-4 bg-gray-50 rounded-lg">
             <span className="text-xs uppercase tracking-wider">
@@ -78,7 +90,15 @@ export default function Request({ request, isAdmin = false }) {
             </span>
 
             <div className="flex justify-between mt-4">
-                {status[request.status]}
+                <div className="flex gap-2">
+                    {status[request.status]}
+                    {request.status !== 'pending' && (
+                        <SecondaryButton className="gap-1" onClick={() => setShowRemarks(true)}>
+                            <ChatBubbleLeftEllipsisIcon className="h-4 w-4" />
+                            Remarks
+                        </SecondaryButton>
+                    )}
+                </div>
 
                 {(isAdmin && request.status === 'pending') && (
                     <div className="flex justify-end gap-2">
@@ -93,11 +113,14 @@ export default function Request({ request, isAdmin = false }) {
                     </div>
                 )}
 
-                {request.status !== 'pending' && (
-                    <SecondaryButton className="gap-1" onClick={() => setShowRemarks(true)}>
-                        <ChatBubbleLeftEllipsisIcon className="h-4 w-4" />
-                        Remarks
-                    </SecondaryButton>
+                {(request.status === 'approved' && !isAdmin && request.item.itemable_type !== 'Office Supplies') && (
+                    <PrimaryButton
+                        className="gap-1 bg-cyan-600 hover:bg-cyan-500 focus:bg-cyan-700 active:bg-cyan-900 focus:ring-cyan-500"
+                        onClick={() => setConfirmingReturn(true)}
+                    >
+                        <ArrowUturnLeftIcon className="h-4 w-4" />
+                        <span className="sm:block hidden">Return</span>
+                    </PrimaryButton>
                 )}
             </div>
             
@@ -159,6 +182,27 @@ export default function Request({ request, isAdmin = false }) {
                         </DangerButton>
                     </div>
                 </form>
+            </Modal>
+
+            <Modal show={confirmingReturn} onClose={() => setConfirmingReturn(false)}>
+                <div className="p-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Are you sure you want to return this item?
+                    </h2>
+
+                    <div className="mt-6 flex justify-end gap-2">
+                        <SecondaryButton onClick={closeDenyModal}>Cancel</SecondaryButton>
+
+                        <PrimaryButton
+                            className="gap-1 bg-cyan-600 hover:bg-cyan-500 focus:bg-cyan-700 active:bg-cyan-900 focus:ring-cyan-500"
+                            onClick={returnItem}
+                            disabled={processing}
+                        >
+                            <ArrowUturnLeftIcon className="h-4 w-4" />
+                            <span className="sm:block hidden">Return</span>
+                        </PrimaryButton>
+                    </div>
+                </div>
             </Modal>
 
             <Modal show={showRemarks} onClose={() => setShowRemarks(false)}>
