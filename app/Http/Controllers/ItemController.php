@@ -30,9 +30,31 @@ use Inertia\Inertia;
 class ItemController extends Controller
 {
     //
-    public function show() {
+    public function show(Request $request) {
+        $category = $request->query('category');
+        $name = $request->query('name');
+
+        if($name) {
+            if($category === 'All') {
+                $items = Item::with('itemable')->where('name', 'like', '%' . $name . '%')->orderBy('id', 'desc')->get();
+            }
+            else {
+                $items = Item::with('itemable')->where('itemable_type', $category)->where('name', 'like', '%' . $name . '%')->orderBy('id', 'desc')->get();
+            }
+        }
+        else {
+            if($category !== 'All') {
+                $items = Item::with('itemable')->where('itemable_type', $category)->orderBy('id', 'desc')->get();
+            }
+        }
+
+        if(!$request->query() || ($request->query('category') === 'All' && !$request->query('name'))) {
+            $items = Item::with('itemable')->orderBy('id', 'desc')->get();
+        }
+
         return Inertia::render('Items/Items', [
-            'items' => Item::with('itemable')->orderBy('id', 'desc')->get(),
+            'items' => $items,
+            'categories' => array_keys(Relation::morphMap()),
         ]);
     }
 

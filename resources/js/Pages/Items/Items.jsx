@@ -3,9 +3,15 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import Card from "@/Components/Card";
 import Item from "@/Components/Item";
 import PrimaryButton from "@/Components/PrimaryButton";
+import SecondaryButton from "@/Components/SecondaryButton";
 import Container from "@/Components/Container";
+import { useState } from "react";
+import FilterItemForm from "./Partials/FilterItemForm";
 
-export default function Items({ auth, items }) {
+export default function Items({ auth, items, categories }) {
+    const [showFilter ,setShowFilter] = useState(false);
+    const category = route().params.category;
+
     return (
         <Authenticated
             user={auth.user}
@@ -13,16 +19,23 @@ export default function Items({ auth, items }) {
         >
             <Head title="Items" />
             <Container>
-                {auth.user.role_id === 1 && (
-                    <div>
-                        <Link href={route('items.create')}>
-                            <PrimaryButton>Add an item</PrimaryButton>
-                        </Link>
-                    </div>
-                )}
+                <div className="flex gap-2">
+                    {auth.user.role_id === 1 && (
+                            <Link href={route('items.create')}>
+                                <PrimaryButton>Add an item</PrimaryButton>
+                            </Link>
+                    )}
+                    <SecondaryButton onClick={() => setShowFilter(true)}>
+                        Filter
+                    </SecondaryButton>
+                </div>
                 
                 <Card>
-                    <Card.Header>All Items</Card.Header>
+                    <Card.Header>
+                        {category ? (
+                            category === 'All' ? 'All Items' : category
+                        ) : 'All Items'}
+                        </Card.Header>
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
                         {items.length ? (
                             items.map((item) => <Item key={item.id} item={item} />)
@@ -31,6 +44,8 @@ export default function Items({ auth, items }) {
                         )}
                     </div>
                 </Card>
+
+                <FilterItemForm categories={categories} show={showFilter} onClose={() => setShowFilter(false)} />
             </Container>
         </Authenticated>
     )
