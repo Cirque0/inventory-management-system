@@ -19,7 +19,7 @@ class DashboardController extends Controller
                 ->get(),
             "total_items" => Item::all()->count(),
             "total_categories" => count(array_keys(Relation::morphMap())),
-            "total_out_of_stock" => Item::where('quantity', 0)->count(),
+            "total_out_of_stock" => Item::where('itemable_type', 'Office Supplies')->where('quantity', 0)->count(),
         ]);
     }
 }
