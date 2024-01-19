@@ -52,9 +52,13 @@ class ItemController extends Controller
             $items = Item::with('itemable')->orderBy('id', 'desc')->get();
         }
 
+
         return Inertia::render('Items/Items', [
             'items' => $items,
             'categories' => array_keys(Relation::morphMap()),
+            "total_items" => !$category || $category === 'All' ? Item::all()->count() : Item::where('itemable_type', $category)->count(),
+            "total_categories" => count(array_keys(Relation::morphMap())),
+            "total_out_of_stock" => Item::where('itemable_type', 'Office Supplies')->where('quantity', 0)->count(),
         ]);
     }
 
