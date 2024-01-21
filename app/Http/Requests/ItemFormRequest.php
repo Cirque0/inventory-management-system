@@ -25,7 +25,7 @@ class ItemFormRequest extends FormRequest
     {
         $generalRules = [
             'category' => ['required', Rule::in(array_keys(Relation::morphMap()))],
-            'name' => ['required', 'string'],
+            'type' => ['required', 'string'],
             'acquisition_date' => ['required', 'date'],
             'acquisition_cost' => ['required', 'integer'],
             'source' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],
@@ -38,31 +38,28 @@ class ItemFormRequest extends FormRequest
         switch($this->category) {
             case 'Motor Vehicle':
                 $additionalRules = [
-                    'type' => ['string'],
-                    'make' => ['string'],
-                    'engine_num' => ['string'],
-                    'chassis_num' => ['string'],
-                    'plate_num' => ['string'],
+                    'make' => ['required', 'string'],
+                    'engine_num' => ['required', 'string'],
+                    'chassis_num' => ['required', 'string'],
+                    'plate_num' => ['required', 'string'],
                 ];
                 break;
 
             case 'Water Craft':
                 $additionalRules = [
-                    'type' => ['string'],
-                    'make' => ['string'],
-                    'body_num' => ['string'],
-                    'starboard_side' => ['string'],
-                    'port_side' => ['string'],
-                    'centerboard' => ['string'],
+                    'make' => ['required', 'string'],
+                    'body_num' => ['required', 'string'],
+                    'starboard_side' => ['required', 'string'],
+                    'port_side' => ['required', 'string'],
+                    'centerboard' => ['required', 'string'],
                 ];
                 break;
 
             case 'MPS Equipment':
                 $additionalRules = [
-                    'type' => ['string'],
-                    'make' => ['string'],
-                    'cal' => ['string'],
-                    'serial_num' => ['string'],
+                    'make' => ['required', 'string'],
+                    'cal' => ['required', 'string'],
+                    'serial_num' => ['required', 'string'],
                 ];
                 break;
 
@@ -77,15 +74,14 @@ class ItemFormRequest extends FormRequest
             case 'Other Property Equipment':
             case 'Office Supplies':
                 $additionalRules = [
-                    'type' => ['string'],
-                    'make' => ['string'],
-                    'serial_num' => ['string'],
+                    'make' => ['required', 'string'],
+                    'serial_num' => ['required', 'string'],
                 ];
                 break;
 
             case 'Work/Zoo Animals':
                 $additionalRules = [
-                    'type' => ['required', 'string'],
+                    'name' => ['required', 'string'],
                     'breed' => ['required', 'string'],
                     'sex' => ['required', Rule::in(['Male', 'Female'])],
                     'color' => ['string'],
@@ -95,8 +91,7 @@ class ItemFormRequest extends FormRequest
 
             case 'Quarters':
                 $additionalRules = [
-                    'type' => ['string'],
-                    'make' => ['string'],
+                    'make' => ['required', 'string'],
                 ];
                 break;
             
