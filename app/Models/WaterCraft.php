@@ -11,7 +11,6 @@ class WaterCraft extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
         'make',
         'body_num',
         'starboard_side',

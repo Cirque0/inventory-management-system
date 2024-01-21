@@ -11,7 +11,7 @@ class Animal extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
+        'name',
         'breed',
         'sex',
         'color',

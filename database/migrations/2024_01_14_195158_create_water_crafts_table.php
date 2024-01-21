@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('water_crafts', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
             $table->string('make');
             $table->string('body_num');
             $table->string('starboard_side');

@@ -13,7 +13,6 @@ class MPSEquipment extends Model
     protected $table = "mps_equipment";
 
     protected $fillable = [
-        'type',
         'make',
         'cal',
         'serial_num',

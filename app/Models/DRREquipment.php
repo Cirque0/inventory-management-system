@@ -13,7 +13,6 @@ class DRREquipment extends Model
     protected $table = 'drr_equipment';
 
     protected $fillable = [
-        'type',
         'make',
         'serial_num',
     ];

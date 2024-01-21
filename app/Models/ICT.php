@@ -13,7 +13,6 @@ class ICT extends Model
     protected $table = 'icts';
 
     protected $fillable = [
-        'type',
         'make',
         'serial_num',
     ];

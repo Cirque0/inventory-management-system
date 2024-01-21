@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('mps_equipment', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
             $table->string('make');
             $table->string('cal');
             $table->string('serial_num');

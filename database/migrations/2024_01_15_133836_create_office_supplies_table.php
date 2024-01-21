@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('office_supplies', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
             $table->string('make');
             $table->string('serial_num');
             $table->timestamps();

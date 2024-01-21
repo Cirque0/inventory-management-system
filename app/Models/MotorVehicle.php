@@ -11,7 +11,6 @@ class MotorVehicle extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
         'make',
         'engine_num',
         'chassis_num',

@@ -11,7 +11,6 @@ class FurnitureFixture extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
         'make',
         'serial_num',
     ];
