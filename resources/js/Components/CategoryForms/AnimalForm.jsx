@@ -6,6 +6,21 @@ import Combobox from "../Combobox";
 export default function AnimalForm({ data, setData, errors }) {
     return (
         <>
+            <div>
+                <InputLabel htmlFor="name" value="Name" required />
+
+                <TextInput
+                    id="name"
+                    type="text"
+                    className="mt-1 block w-full"
+                    value={data.name || ""}
+                    onChange={(e) => setData("name", e.target.value)}
+                    required
+                />
+
+                <InputError className="mt-2" message={errors.name} />
+            </div>
+
             <div className="grid grid-cols-2 gap-x-2">
                 <div>
                     <InputLabel htmlFor="type" value="Type" required />

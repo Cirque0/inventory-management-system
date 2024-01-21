@@ -17,7 +17,6 @@ import { useEffect } from "react";
 export default function CreateItemForm({ className, categories }) {
     const { data, setData, post, reset, errors, processing, recentlySuccessful } = useForm({
         category: '',
-        name: '',
         acquisition_date: '',
         acquisition_cost: '',
         source: '',
@@ -48,22 +47,6 @@ export default function CreateItemForm({ className, categories }) {
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel htmlFor="name" value="Name" required />
-
-                    <TextInput
-                        id="name"
-                        className="mt-1 block w-full"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                        isFocused
-                        autoComplete="name"
-                    />
-
-                    <InputError className="mt-2" message={errors.name} />
-                </div>
-
                 <div>
                     <InputLabel value="Category" required />
 
@@ -106,7 +89,7 @@ export default function CreateItemForm({ className, categories }) {
                     }
                 })()}
 
-                {data.category !== "Buildings and Facilities" && (
+                {(data.category && data.category !== "Buildings and Facilities") && (
                     <>
                         <div className="grid grid-cols-2 gap-x-2">
                             <div>
@@ -222,7 +205,7 @@ export default function CreateItemForm({ className, categories }) {
 
                 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Add item</PrimaryButton>
+                    <PrimaryButton disabled={processing || !data.category}>Add item</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}

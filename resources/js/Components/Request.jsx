@@ -75,7 +75,7 @@ export default function Request({ request, isAdmin = false }) {
             <span className="text-xs uppercase tracking-wider">
                 {request.item.itemable_type}
             </span>
-            <span className="font-bold">{request.item.name}</span>
+            <span className="font-bold">{request.item.type}</span>
             <span className="text-sm">
                 Requested by{" "}
                 <span className="font-bold">{request.requester.name}</span>

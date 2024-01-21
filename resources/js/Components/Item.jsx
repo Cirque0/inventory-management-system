@@ -8,7 +8,7 @@ export default function Item({ item }) {
             <span className="text-xs uppercase tracking-wider">
                 {item.itemable_type}
             </span>
-            <span className="font-bold">{item.name}</span>
+            <span className="font-bold">{item.type}</span>
             <span className="text-sm">
                 Acquired{" "}
                 {new Date(item.acquisition_date).toLocaleDateString("en-US", {

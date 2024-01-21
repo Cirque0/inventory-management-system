@@ -15,7 +15,7 @@ export default function ItemDetails({ item }) {
                     <span className="text-sm uppercase tracking-wider">
                         {item.itemable_type}
                     </span>
-                    <span className="text-2xl font-bold">{item.name}</span>
+                    <span className="text-2xl font-bold">{item.type}</span>
                     <span className="text-lg">
                         {item.itemable_type == "Buildings and Facilities" && "Constructed/"}Acquired{" "}
                         {new Date(item.acquisition_date).toLocaleDateString(
