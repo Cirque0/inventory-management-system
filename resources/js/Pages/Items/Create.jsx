@@ -8,7 +8,7 @@ export default function Create({ auth, categories }) {
     return (
         <Authenticated
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Add an Item</h2>}
+            header={<h2 className="font-semibold text-xl text-white leading-tight">Add an Item</h2>}
         >
             <Head title="Add an Item" />
             <Container>

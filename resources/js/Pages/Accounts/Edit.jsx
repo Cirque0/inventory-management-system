@@ -9,7 +9,7 @@ export default function Edit({ auth, account }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{account.name}</h2>}
+            header={<h2 className="font-semibold text-xl text-white leading-tight">{account.name}</h2>}
         >
             <Head title={"Edit Account / " + account.name} />
 

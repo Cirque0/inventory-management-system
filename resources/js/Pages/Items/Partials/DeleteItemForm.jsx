@@ -6,6 +6,7 @@ import Modal from '@/Components/Modal';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 export default function DeleteItemForm({ item, className = '' }) {
     const [confirmingDeletion, setConfirmingDeletion] = useState(false);
@@ -45,7 +46,10 @@ export default function DeleteItemForm({ item, className = '' }) {
                 </p>
             </header>
 
-            <DangerButton onClick={() => setConfirmingDeletion(true)}>Delete Item</DangerButton>
+            <DangerButton className='gap-1' onClick={() => setConfirmingDeletion(true)}>
+                <TrashIcon className='h-4 w-4' />
+                <span>Delete Item</span>
+            </DangerButton>
 
             <Modal show={confirmingDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
@@ -62,8 +66,9 @@ export default function DeleteItemForm({ item, className = '' }) {
                     <div className="mt-6 flex justify-end">
                         <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
 
-                        <DangerButton className="ms-3" disabled={processing}>
-                            Delete Item
+                        <DangerButton className="ms-3 gap-1" disabled={processing}>
+                            <TrashIcon className='h-4 w-4' />
+                            <span>Delete Item</span>
                         </DangerButton>
                     </div>
                 </form>

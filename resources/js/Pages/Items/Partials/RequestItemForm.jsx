@@ -6,7 +6,7 @@ import InputLabel from "@/Components/InputLabel";
 import Modal from "@/Components/Modal";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
-import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, MinusIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 
 export default function RequestItemForm({ item, className = "" }) {
     const {
@@ -55,8 +55,9 @@ export default function RequestItemForm({ item, className = "" }) {
                     />
                     <PlusIcon className="h-6 w-6 cursor-pointer" onClick={() => data.quantity < item.quantity && setData("quantity", data.quantity + 1)} />
                 </div>
-                <PrimaryButton onClick={() => setConfirmingDeletion(true)} disabled={processing}>
-                    Request Item
+                <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500" onClick={() => setConfirmingDeletion(true)} disabled={processing}>
+                    <ChatBubbleLeftIcon className="h-4 w-4" />
+                    <span>Request Item</span>
                 </PrimaryButton>
             </form>
 

@@ -11,6 +11,7 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
+import { PencilIcon } from "@heroicons/react/24/outline";
 import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
 
@@ -199,7 +200,10 @@ export default function UpdateItemForm({ className, item }) {
 
                 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Update item</PrimaryButton>
+                    <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500" disabled={processing}>
+                        <PencilIcon className="h-4 w-4" />
+                        <span>Update Item</span>
+                    </PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}

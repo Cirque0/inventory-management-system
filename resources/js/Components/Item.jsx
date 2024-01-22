@@ -1,6 +1,7 @@
 import SecondaryButton from "./SecondaryButton";
 import DangerButton from "./DangerButton";
 import { Link } from "@inertiajs/react";
+import { EyeIcon } from "@heroicons/react/24/outline";
 
 export default function Item({ item }) {
     return (
@@ -34,7 +35,10 @@ export default function Item({ item }) {
                     href={route("items.edit", { id: item.id })}
                     preserveScroll
                 >
-                    <SecondaryButton>View</SecondaryButton>
+                    <SecondaryButton className="gap-1">
+                        <EyeIcon className="h-4 w-4" />
+                        <span>View</span>
+                    </SecondaryButton>
                 </Link>
             </div>
         </div>

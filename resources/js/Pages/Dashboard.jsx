@@ -4,13 +4,13 @@ import StatCard from '@/Components/StatCard';
 import Card from '@/Components/Card';
 import Request from '@/Components/Request';
 
-export default function Dashboard({ auth, pending_requests, total_items, total_categories, total_out_of_stock }) {
+export default function Dashboard({ auth, requests, total_items, total_categories, total_out_of_stock }) {
     const isAdmin = auth.user.role_id === 1;
 
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={<h2 className="font-semibold text-xl text-white leading-tight">Dashboard</h2>}
         >
             <Head title="Dashboard" />
 
@@ -44,20 +44,24 @@ export default function Dashboard({ auth, pending_requests, total_items, total_c
                     </StatCard>
                 </div>
 
-                {isAdmin && (
-                    <Card>
-                        <Card.Header>Pending requests</Card.Header>
-                        <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
-                            {pending_requests.length ? (
-                                pending_requests.map((request) => (
-                                    <Request key={request.id} request={request} isAdmin={isAdmin} />
-                                ))
-                            ) : (
-                                <span className="italic">There are no pending requests right now.</span>
-                            )}
-                        </div>
-                    </Card>
-                )}
+                <Card>
+                    <Card.Header>{isAdmin ? 'Pending Requests' : 'Your Recent Requests'}</Card.Header>
+                    <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
+                        {requests.length ? (
+                            requests.map((request) => (
+                                <Request key={request.id} request={request} isAdmin={isAdmin} />
+                            ))
+                        ) : (
+                            <span className="italic">
+                                {isAdmin ? (
+                                    "There are no pending requests right now."
+                                ) : (
+                                    "You haven't made any requests, yet."
+                                )}
+                            </span>
+                        )}
+                    </div>
+                </Card>
             </div>
         </AuthenticatedLayout>
     );

@@ -191,7 +191,7 @@ export default function Request({ request, isAdmin = false }) {
                     </h2>
 
                     <div className="mt-6 flex justify-end gap-2">
-                        <SecondaryButton onClick={closeDenyModal}>Cancel</SecondaryButton>
+                        <SecondaryButton onClick={() => setConfirmingReturn(false)}>Cancel</SecondaryButton>
 
                         <PrimaryButton
                             className="gap-1 bg-cyan-600 hover:bg-cyan-500 focus:bg-cyan-700 active:bg-cyan-900 focus:ring-cyan-500"

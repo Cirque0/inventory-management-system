@@ -3,18 +3,18 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import { ArchiveBoxIcon, Bars3Icon, ChatBubbleLeftIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
 import NavUserTag from '@/Components/NavUserTag';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen relative flex bg-gray-100">
-            <nav className="sticky top-0 z-50 w-full max-w-64 h-screen hidden sm:flex flex-col p-4 gap-4 bg-white border-b border-gray-100 shadow">
+        <div className="min-h-screen relative flex bg-temple">
+            <nav className="sticky top-0 z-50 w-full max-w-64 h-screen hidden sm:flex flex-col p-4 gap-4 bg-blue-500 border-b border-blue-100 shadow">
                 <div className='flex justify-between align-baseline'>
                     <Link href="/">
-                        <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                        <ApplicationLogo className="block h-9 w-auto fill-current text-white" />
                     </Link>
 
                 </div>
@@ -23,15 +23,18 @@ export default function Authenticated({ user, header, children }) {
 
                 <div className="flex flex-col">
                     <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <HomeIcon className='h-4 w-4' />
                         Dashboard
                     </ResponsiveNavLink>
 
                     {user.role_id === 1 && (
                         <>
                             <ResponsiveNavLink href={route('accounts.show')} active={route().current('accounts.*')}>
+                                <UsersIcon className='h-4 w-4' />
                                 Accounts
                             </ResponsiveNavLink>
                             <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
+                                <ChatBubbleLeftIcon className='h-4 w-4' />
                                 Requests
                             </ResponsiveNavLink>
                         </>
@@ -39,11 +42,13 @@ export default function Authenticated({ user, header, children }) {
 
                     {user.role_id === 2 && (
                         <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
+                            <ChatBubbleLeftIcon className='h-4 w-4' />
                             Your Requests
                         </ResponsiveNavLink>
                     )}
 
                     <ResponsiveNavLink href={route('items.show')} active={route().current('items.*')}>
+                        <ArchiveBoxIcon className='h-4 w-4' />
                         Items
                     </ResponsiveNavLink>
                 </div>
@@ -97,8 +102,8 @@ export default function Authenticated({ user, header, children }) {
 
             <main className='relative flex flex-col grow'>
                 {header && (
-                    <header className="sticky z-50 top-0 bg-white shadow">
-                        <div className="flex items-center bg-white max-w-7xl mx-auto sm:py-6 py-4 px-4 sm:px-6 lg:px-8 gap-2">
+                    <header className="sticky z-50 top-0 bg-indigo-500 shadow">
+                        <div className="flex items-center bg-indigo-500 max-w-7xl mx-auto sm:py-6 py-4 px-4 sm:px-6 lg:px-8 gap-2">
                             <button
                                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
                                 className="sm:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
