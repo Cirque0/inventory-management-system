@@ -30,35 +30,100 @@ use Inertia\Inertia;
 class ItemController extends Controller
 {
     //
+    private function getMorphClassesExcept(array $excludedMorphs) {
+        $morphMap = Relation::morphMap();
+
+        foreach ($excludedMorphs as $morph) {
+            unset($morphMap[$morph]);
+        }
+
+        return $morphMap;
+    }
+
     public function show(Request $request) {
         $category = $request->query('category');
-        $name = $request->query('name');
+        error_log(json_encode($request->query()));
 
-        if($name) {
-            if($category === 'All') {
-                $items = Item::with('itemable')->where('name', 'like', '%' . $name . '%')->orderBy('id', 'desc')->get();
-            }
-            else {
-                $items = Item::with('itemable')->where('itemable_type', $category)->where('name', 'like', '%' . $name . '%')->orderBy('id', 'desc')->get();
-            }
-        }
-        else {
+        $itemQuery = Item::with('itemable')->orderBy('id', 'desc');
+
+        $request->whenFilled('category', function (string $input) use ($itemQuery, $category) {
             if($category !== 'All') {
-                $items = Item::with('itemable')->where('itemable_type', $category)->orderBy('id', 'desc')->get();
+                $itemQuery->where('itemable_type', $input);
             }
-        }
+        });
 
-        if(!$request->query() || ($request->query('category') === 'All' && !$request->query('name'))) {
-            $items = Item::with('itemable')->orderBy('id', 'desc')->get();
-        }
+        $request->whenFilled('query', function (string $input) use ($itemQuery) {
+            // $itemQuery->where('type', 'like', '%' . $input . '%');
 
-
+            $itemQuery->where(function ($query) use ($itemQuery, $input) {
+                $query->where('type', 'like', '%' . $input . '%')
+                    ->orWhere('source', 'like', '%' . $input . '%')
+                    ->orWhere('status', 'like', '%' . $input . '%')
+                    ->orWhere('location', 'like', '%' . $input . '%')
+                    ->orWhere('quantity', $input)
+                    ->orWhereHasMorph(
+                        'itemable',
+                        $this->getMorphClassesExcept(['Buildings and Facilities', 'Work/Zoo Animals']),
+                        function ($query) use ($input) {
+                            $query->where('make', 'like', '%' . $input . '%');
+                        }
+                    )
+                    ->orWhereHasMorph(
+                        'itemable',
+                        $this->getMorphClassesExcept(['Buildings and Facilities', 'Work/Zoo Animals', 'Motor Vehicle', 'Water Craft', 'Quarters']),
+                        function ($query) use ($input) {
+                            $query->where('serial_num', 'like', '%' . $input . '%');
+                        }
+                    )
+                    ->orWhereHasMorph(
+                        'itemable',
+                        [MotorVehicle::class],
+                        function ($query) use ($input) {
+                            $query->where('engine_num', 'like', '%' . $input . '%')
+                                ->orWhere('chassis_num', 'like', '%' . $input .  '%')
+                                ->orWhere('plate_num', 'like', '%' . $input .  '%');
+                        }
+                    )
+                    ->orWhereHasMorph(
+                        'itemable',
+                        [WaterCraft::class],
+                        function ($query) use ($input) {
+                            $query->where('body_num', 'like', '%' . $input . '%');
+                        }
+                    )
+                    ->orWhereHasMorph(
+                        'itemable',
+                        [MPSEquipment::class],
+                        function ($query) use ($input) {
+                            $query->where('cal', 'like', '%' . $input . '%');
+                        }
+                    )
+                    ->orWhereHasMorph(
+                        'itemable',
+                        [Animal::class],
+                        function ($query) use ($input) {
+                            $query->where('breed', 'like', '%' . $input . '%')
+                                ->orWhere('name', 'like', '%' . $input . '%');
+                        }
+                    )
+                    ->orWhereHasMorph(
+                        'itemable',
+                        [Facility::class],
+                        function ($query) use ($input) {
+                            $query->where('building_code', 'like', '%' . $input . '%')
+                                ->orWhere('total_floor_area', $input);
+                        }
+                    );
+            });
+        });
+        
         return Inertia::render('Items/Items', [
-            'items' => $items,
+            'items' => $itemQuery->get(),
             'categories' => array_keys(Relation::morphMap()),
-            "total_items" => !$category || $category === 'All' ? Item::all()->count() : Item::where('itemable_type', $category)->count(),
+            "total_items" => $category && $category !== 'All' ? Item::where('itemable_type', $category)->count() : Item::count(),
             "total_categories" => count(array_keys(Relation::morphMap())),
             "total_out_of_stock" => Item::where('itemable_type', 'Office Supplies')->where('quantity', 0)->count(),
+            "name_exists" => $request->filled('category'),
         ]);
     }
 

@@ -8,6 +8,7 @@ import Container from "@/Components/Container";
 import { useState } from "react";
 import FilterItemForm from "./Partials/FilterItemForm";
 import StatCard from "@/Components/StatCard";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function Items({ auth, items, categories, total_items, total_categories, total_out_of_stock }) {
     const [showFilter ,setShowFilter] = useState(false);
@@ -27,7 +28,8 @@ export default function Items({ auth, items, categories, total_items, total_cate
                             </Link>
                     )}
                     <SecondaryButton onClick={() => setShowFilter(true)}>
-                        Filter
+                        <MagnifyingGlassIcon className="h-4 w-4" />
+                        <span>Search</span>
                     </SecondaryButton>
                 </div>
 
@@ -69,7 +71,14 @@ export default function Items({ auth, items, categories, total_items, total_cate
                         {category ? (
                             category === 'All' ? 'All Items' : category
                         ) : 'All Items'}
+                    </Card.Header>
+
+                    {route().params.query && (
+                        <Card.Header>
+                            Search results for "{route().params.query}"
                         </Card.Header>
+                    )}
+                    
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
                         {items.length ? (
                             items.map((item) => <Item key={item.id} item={item} />)
