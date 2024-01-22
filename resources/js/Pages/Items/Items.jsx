@@ -8,7 +8,7 @@ import Container from "@/Components/Container";
 import { useState } from "react";
 import FilterItemForm from "./Partials/FilterItemForm";
 import StatCard from "@/Components/StatCard";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 export default function Items({ auth, items, categories, total_items, total_categories, total_out_of_stock }) {
     const [showFilter ,setShowFilter] = useState(false);
@@ -24,7 +24,10 @@ export default function Items({ auth, items, categories, total_items, total_cate
                 <div className="flex gap-2">
                     {auth.user.role_id === 1 && (
                             <Link href={route('items.create')}>
-                                <PrimaryButton>Add an item</PrimaryButton>
+                                <PrimaryButton className="gap-1 bg-blue-600 hover:bg-blue-500 focus:bg-blue-700 active:bg-blue-900 focus:ring-blue-500">
+                                    <PlusIcon className="h-4 w-4" />
+                                    <span>Add an item</span>
+                                </PrimaryButton>
                             </Link>
                     )}
                     <SecondaryButton onClick={() => setShowFilter(true)}>
@@ -78,7 +81,7 @@ export default function Items({ auth, items, categories, total_items, total_cate
                             Search results for "{route().params.query}"
                         </Card.Header>
                     )}
-                    
+
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
                         {items.length ? (
                             items.map((item) => <Item key={item.id} item={item} />)
