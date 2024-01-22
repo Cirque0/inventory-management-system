@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use Illuminate\Foundation\Application;
@@ -47,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/items/{id}', [ItemController::class, 'update'])->name('items.update');
     Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
     Route::post('/items/add', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/items_print', [PrintController::class, 'print'])->name('items.print');
 
     Route::get('/requests', [RequestController::class, 'show'])->name('requests.show');
     Route::post('/requests', [RequestController::class, 'store'])->name('requests.store');
@@ -57,6 +59,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';
