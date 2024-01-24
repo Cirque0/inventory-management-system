@@ -51,6 +51,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/requests/approve', [RequestController::class, 'approve'])->name('requests.approve');
     Route::patch('/requests/deny', [RequestController::class, 'deny'])->name('requests.deny');
     Route::patch('/requests/return', [RequestController::class, 'return_item'])->name('requests.return');
+    Route::patch('/requests/delete', [RequestController::class, 'delete'])->name('requests.delete');
+    Route::delete('/requests/cancel', [RequestController::class, 'cancel'])->name('requests.cancel');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

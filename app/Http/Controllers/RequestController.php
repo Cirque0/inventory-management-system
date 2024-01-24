@@ -76,6 +76,28 @@ class RequestController extends Controller
         return back();
     }
 
+    public function cancel(Request $request) {
+        $request->validate([
+            'request_id' => ['required', 'exists:requests,id'],
+        ]);
+
+        $requestModel = RequestModel::find($request->request_id);
+        $requestModel->forceDelete();
+
+        return back();
+    }
+
+    public function delete(Request $request) {
+        $request->validate([
+            'request_id' => ['required', 'exists:requests,id'],
+        ]);
+
+        $requestModel = RequestModel::find($request->request_id);
+        $requestModel->delete();
+
+        return back();
+    }
+
     public function return_item(Request $request) {
         $request->validate([
             'request_id' => ['required', 'exists:requests,id'],
