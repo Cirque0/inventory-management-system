@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\RequestScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,11 @@ class Request extends Model
         'status',
         'remarks',
     ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new RequestScope);
+    }
 
     public function item(): BelongsTo
     {
