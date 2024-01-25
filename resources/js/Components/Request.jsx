@@ -115,7 +115,7 @@ export default function Request({ request, isAdmin = false }) {
                 {request.status === 'pending' && (
                     isAdmin ? (
                         <div className="flex justify-end gap-2 flex-wrap">
-                            <PrimaryButton onClick={() => setConfirmingApprove(true)} className="gap-1 bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500">
+                            <PrimaryButton onClick={() => setConfirmingApprove(true)} className="gap-1 !bg-green-600 hover:!bg-green-500 focus:!bg-green-700 active:!bg-green-900 focus:!ring-green-500">
                                 <CheckIcon className="h-4 w-4" />
                                 <span className="sm:block hidden">Approve</span>
                             </PrimaryButton>
@@ -136,7 +136,7 @@ export default function Request({ request, isAdmin = false }) {
                     <div className="flex gap-2 flex-wrap">
                         {(request.status === 'approved' && !isAdmin && request.item.itemable_type !== 'Office Supplies') && (
                             <PrimaryButton
-                                className="gap-1 bg-cyan-600 hover:bg-cyan-500 focus:bg-cyan-700 active:bg-cyan-900 focus:ring-cyan-500"
+                                className="gap-1 !bg-cyan-600 hover:!bg-cyan-500 focus:!bg-cyan-700 active:!bg-cyan-900 focus:!ring-cyan-500"
                                 onClick={() => setConfirmingReturn(true)}
                             >
                                 <ArrowUturnLeftIcon className="h-4 w-4" />
@@ -179,7 +179,7 @@ export default function Request({ request, isAdmin = false }) {
                     <div className="mt-6 flex justify-end gap-2">
                         <SecondaryButton onClick={closeApproveModal}>Cancel</SecondaryButton>
 
-                        <PrimaryButton onClick={approve} className="gap-1 bg-green-600 hover:bg-green-500 focus:bg-green-700 active:bg-green-900 focus:ring-green-500" disabled={processing}>
+                        <PrimaryButton onClick={approve} className="gap-1 !bg-green-600 hover:!bg-green-500 focus:!bg-green-700 active:!bg-green-900 focus:!ring-green-500" disabled={processing}>
                             <CheckIcon className="h-4 w-4" />
                             <span className="sm:block hidden">Approve</span>
                         </PrimaryButton>
@@ -267,7 +267,7 @@ export default function Request({ request, isAdmin = false }) {
                         <SecondaryButton onClick={() => setConfirmingReturn(false)}>Cancel</SecondaryButton>
 
                         <PrimaryButton
-                            className="gap-1 bg-cyan-600 hover:bg-cyan-500 focus:bg-cyan-700 active:bg-cyan-900 focus:ring-cyan-500"
+                            className="gap-1 !bg-cyan-600 hover:!bg-cyan-500 focus:!bg-cyan-700 active:!bg-cyan-900 focus:!ring-cyan-500"
                             onClick={returnItem}
                             disabled={processing}
                         >

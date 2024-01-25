@@ -62,7 +62,7 @@ export default function UpdateProfileInformation({ account, className = '' }) {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500" disabled={processing}>
+                    <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500" disabled={processing}>
                         <PencilIcon className='h-4 w-4' />
                         <span>Save</span>
                     </PrimaryButton>

@@ -55,7 +55,7 @@ export default function RequestItemForm({ item, className = "" }) {
                     />
                     <PlusIcon className="h-6 w-6 cursor-pointer" onClick={() => data.quantity < item.quantity && setData("quantity", data.quantity + 1)} />
                 </div>
-                <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500" onClick={() => setConfirmingDeletion(true)} disabled={processing}>
+                <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500" onClick={() => setConfirmingDeletion(true)} disabled={processing}>
                     <ChatBubbleLeftIcon className="h-4 w-4" />
                     <span>Request Item</span>
                 </PrimaryButton>

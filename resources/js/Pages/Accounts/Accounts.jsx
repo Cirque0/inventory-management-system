@@ -19,7 +19,7 @@ export default function Accounts({ auth, accounts }) {
             <Container>
                 <div>
                     <Link href={route('accounts.create')}>
-                        <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500">
+                        <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500">
                             <PlusIcon className='h-4 w-4' />
                             <span>Create an account</span>
                         </PrimaryButton>

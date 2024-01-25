@@ -26,7 +26,7 @@ export default function Items({ auth, items, categories, total_items, total_cate
                 <div className="flex gap-2">
                     {auth.user.role_id === 1 && (
                         <Link href={route('items.create')}>
-                            <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500">
+                            <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500">
                                 <PlusIcon className="h-4 w-4" />
                                 <span>Add an item</span>
                             </PrimaryButton>

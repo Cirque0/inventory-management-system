@@ -3,6 +3,7 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import { useForm } from "@inertiajs/react";
 
 export default function CreateUserForm({ className }) {
@@ -90,7 +91,13 @@ export default function CreateUserForm({ className }) {
                     <InputError className="mt-2" message={errors.password_confirmation} />
                 </div>
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Create account</PrimaryButton>
+                    <PrimaryButton 
+                        className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500"
+                        disabled={processing}
+                    >
+                        <PlusIcon className='h-4 w-4' />
+                        <span>Create account</span>
+                    </PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}

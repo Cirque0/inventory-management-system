@@ -206,7 +206,7 @@ export default function CreateItemForm({ className, categories }) {
 
                 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500" disabled={processing || !data.category}>
+                    <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500" disabled={processing || !data.category}>
                         <PlusIcon className="h-4 w-4" />
                         <span>Add Item</span>
                     </PrimaryButton>

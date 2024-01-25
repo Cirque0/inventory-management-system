@@ -58,7 +58,7 @@ export default function FilterItemForm({ categories, show, onClose }) {
                 <div className="mt-6 flex justify-end gap-2">
                     <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
 
-                    <PrimaryButton className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500">
+                    <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500">
                         <MagnifyingGlassIcon className="h-4 w-4" />
                         <span>Search</span>
                     </PrimaryButton>

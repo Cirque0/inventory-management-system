@@ -42,7 +42,7 @@ export default function PrintForm({ categories, show, onClose }) {
                     <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
 
                     <a href={route('items.print', data)}>
-                        <PrimaryButton type={'button'} className="gap-1 bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-700 active:bg-indigo-900 focus:ring-indigo-500">
+                        <PrimaryButton type={'button'} className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500">
                             <PrinterIcon className="h-4 w-4" />
                             <span>Print</span>
                         </PrimaryButton>
