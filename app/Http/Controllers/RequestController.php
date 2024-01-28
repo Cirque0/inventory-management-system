@@ -90,6 +90,18 @@ class RequestController extends Controller
 
         $requestModel->save();
 
+        if(in_array($requestModel->item->itemable_type, [
+            "Communications Equipment",
+            "Technical Scientific Equipment",
+            "ICT",
+            "Other Machinery and Equipment",
+            "Disaster Response and Rescue Equipment",
+            "Other Property Equipment",
+            "Quarters",
+        ])) {
+            return Redirect::route('requests.show_borrow');
+        }
+        
         return Redirect::route('requests.show');
     }
 
