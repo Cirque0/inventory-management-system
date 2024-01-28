@@ -6,11 +6,9 @@ export default function Guest({ children }) {
         <div className="bg-[url('/warehouse-image.jpg')] bg-cover">
             <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 backdrop-blur-sm">
                 <div>
-                    <Link href="/">
-                        <div className='flex justify-center items-center bg-gray-50/50 p-2 rounded-xl backdrop-blur'>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-600" />
-                        </div>
-                    </Link>
+                    <div className='flex justify-center items-center bg-gray-50/50 p-2 rounded-xl backdrop-blur'>
+                        <ApplicationLogo className="w-20 h-20 fill-current text-gray-600" />
+                    </div>
                 </div>
 
                 <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
