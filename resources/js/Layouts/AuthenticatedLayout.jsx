@@ -13,10 +13,7 @@ export default function Authenticated({ user, header, children }) {
         <div className="min-h-screen relative flex bg-temple">
             <nav className="sticky top-0 z-50 w-full max-w-64 h-screen hidden sm:flex flex-col p-4 gap-4 bg-blue-500 border-b border-blue-100 shadow">
                 <div className='flex justify-between align-baseline'>
-                    <Link href="/">
-                        <ApplicationLogo className="block h-9 w-auto fill-current text-white" />
-                    </Link>
-
+                    <ApplicationLogo className="block h-9 w-auto fill-current text-white" />
                 </div>
 
                 <NavUserTag user={user} />
@@ -67,9 +64,7 @@ export default function Authenticated({ user, header, children }) {
                 <div className='fixed inset-0 overflow-y-auto bg-slate-800/50'>
                     <Dialog.Panel className={'h-screen flex flex-col mr-24 bg-blue-500 p-4 gap-4'}>
                         <Dialog.Title className={'flex justify-between align-baseline'}>
-                            <Link href="/">
-                                <ApplicationLogo className="block h-9 w-auto fill-current text-white" />
-                            </Link>
+                            <ApplicationLogo className="block h-9 w-auto fill-current text-white" />
 
                         </Dialog.Title>
 
