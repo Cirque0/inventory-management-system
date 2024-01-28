@@ -33,7 +33,7 @@ export default function Authenticated({ user, header, children }) {
                                 <UsersIcon className='h-4 w-4' />
                                 Accounts
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
+                            <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.show')}>
                                 <ChatBubbleLeftIcon className='h-4 w-4' />
                                 Requests
                             </ResponsiveNavLink>
@@ -41,11 +41,16 @@ export default function Authenticated({ user, header, children }) {
                     )}
 
                     {user.role_id === 2 && (
-                        <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
+                        <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.show')}>
                             <ChatBubbleLeftIcon className='h-4 w-4' />
                             Your Requests
                         </ResponsiveNavLink>
                     )}
+                    
+                    <ResponsiveNavLink href={route('requests.show_borrow')} active={route().current('requests.show_borrow')}>
+                        <ChatBubbleLeftIcon className='h-4 w-4' />
+                        Borrow Requests
+                    </ResponsiveNavLink>
 
                     <ResponsiveNavLink href={route('items.show')} active={route().current('items.*')}>
                         <ArchiveBoxIcon className='h-4 w-4' />
@@ -72,27 +77,37 @@ export default function Authenticated({ user, header, children }) {
 
                         <div className="flex flex-col">
                             <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                <HomeIcon className='h-4 w-4' />
                                 Dashboard
                             </ResponsiveNavLink>
 
                             {user.role_id === 1 && (
                                 <>
                                     <ResponsiveNavLink href={route('accounts.show')} active={route().current('accounts.*')}>
+                                        <UsersIcon className='h-4 w-4' />
                                         Accounts
                                     </ResponsiveNavLink>
-                                    <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
+                                    <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.show')}>
+                                        <ChatBubbleLeftIcon className='h-4 w-4' />
                                         Requests
                                     </ResponsiveNavLink>
                                 </>
                             )}
 
                             {user.role_id === 2 && (
-                                <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.*')}>
+                                <ResponsiveNavLink href={route('requests.show')} active={route().current('requests.show')}>
+                                    <ChatBubbleLeftIcon className='h-4 w-4' />
                                     Your Requests
                                 </ResponsiveNavLink>
                             )}
 
+                            <ResponsiveNavLink href={route('requests.show_borrow')} active={route().current('requests.show_borrow')}>
+                                <ChatBubbleLeftIcon className='h-4 w-4' />
+                                Borrow Requests
+                            </ResponsiveNavLink>
+
                             <ResponsiveNavLink href={route('items.show')} active={route().current('items.*')}>
+                                <ArchiveBoxIcon className='h-4 w-4' />
                                 Items
                             </ResponsiveNavLink>
                         </div>

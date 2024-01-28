@@ -18,7 +18,62 @@ class RequestController extends Controller
         $user = Auth::user();
         
         return Inertia::render('Requests/Requests', [
-            'requests' => Auth::user()->role_id === 1 ? RequestModel::with('item', 'requester')->orderBy('id', 'desc')->get() : $user->requests()->with('item', 'requester')->orderBy('id', 'desc')->get(),
+            'requests' => Auth::user()->role_id === 1 ? (
+                RequestModel::with('item', 'requester')
+                ->orderBy('id', 'desc')
+                ->whereHas('item', function ($query) {
+                    $query->where('itemable_type', 'Office Supplies');
+                })
+                ->get()
+            ) : (
+                $user->requests()
+                ->with('item', 'requester')
+                ->orderBy('id', 'desc')
+                ->whereHas('item', function ($query) {
+                    $query->where('itemable_type', 'Office Supplies');
+                })
+                ->get()
+            ),
+        ]);
+    }
+
+    public function show_borrow() {
+        /** @var \App\Models\User $user **/
+        $user = Auth::user();
+        
+        return Inertia::render('Requests/BorrowRequests', [
+            'requests' => Auth::user()->role_id === 1 ? (
+                RequestModel::with('item', 'requester')
+                ->orderBy('id', 'desc')
+                ->whereHas('item', function ($query) {
+                    $query->whereIn('itemable_type', [
+                        "Communications Equipment",
+                        "Technical Scientific Equipment",
+                        "ICT",
+                        "Other Machinery and Equipment",
+                        "Disaster Response and Rescue Equipment",
+                        "Other Property Equipment",
+                        "Quarters",
+                    ]);
+                })
+                ->get()
+            ) : (
+                $user->requests()
+                ->with('item', 'requester')
+                ->orderBy('id', 'desc')
+                ->whereHas('item', function ($query) {
+                    $query->whereIn('itemable_type', [
+                        "Communications Equipment",
+                        "Technical Scientific Equipment",
+                        "ICT",
+                        "Other Machinery and Equipment",
+                        "Disaster Response and Rescue Equipment",
+                        "Other Property Equipment",
+                        "Quarters",
+                    ]);
+                })
+                ->get()
+            ),
         ]);
     }
 

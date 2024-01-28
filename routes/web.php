@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/items_print', [PrintController::class, 'print'])->name('items.print');
 
     Route::get('/requests', [RequestController::class, 'show'])->name('requests.show');
+    Route::get('/borrow_requests', [RequestController::class, 'show_borrow'])->name('requests.show_borrow');
     Route::post('/requests', [RequestController::class, 'store'])->name('requests.store');
     Route::patch('/requests/approve', [RequestController::class, 'approve'])->name('requests.approve');
     Route::patch('/requests/deny', [RequestController::class, 'deny'])->name('requests.deny');

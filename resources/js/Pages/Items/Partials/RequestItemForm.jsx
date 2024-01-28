@@ -8,7 +8,7 @@ import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 import { PlusIcon, MinusIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 
-export default function RequestItemForm({ item, className = "" }) {
+export default function RequestItemForm({ item, className = "", borrow = false }) {
     const {
         data,
         setData,
@@ -33,15 +33,15 @@ export default function RequestItemForm({ item, className = "" }) {
         <section className={`space-y-6 ${className}`}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Request Item
+                    Request {borrow && "to Borrow "}Item
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    How many of this item would you like to request?
+                    How many of this item would you like to {borrow ? "borrow?" : "request"}
                 </p>
             </header>
 
-            <form onSubmit={requestItem} className="flex gap-4">
+            <form onSubmit={requestItem} className="flex sm:flex-row flex-col gap-4">
                 <div className="flex items-center gap-1">
                     <MinusIcon className="h-6 w-6 cursor-pointer" onClick={() => data.quantity > 0 && setData("quantity", data.quantity - 1)} />
                     <TextInput
@@ -55,9 +55,9 @@ export default function RequestItemForm({ item, className = "" }) {
                     />
                     <PlusIcon className="h-6 w-6 cursor-pointer" onClick={() => data.quantity < item.quantity && setData("quantity", data.quantity + 1)} />
                 </div>
-                <PrimaryButton className="gap-1 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500" onClick={() => setConfirmingDeletion(true)} disabled={processing}>
+                <PrimaryButton className="sm:gap-1 gap-4 !bg-indigo-600 hover:!bg-indigo-500 focus:!bg-indigo-700 active:!bg-indigo-900 focus:!ring-indigo-500" onClick={() => setConfirmingDeletion(true)} disabled={processing}>
                     <ChatBubbleLeftIcon className="h-4 w-4" />
-                    <span>Request Item</span>
+                    <span>Request {borrow && "to Borrow "}Item</span>
                 </PrimaryButton>
             </form>
 

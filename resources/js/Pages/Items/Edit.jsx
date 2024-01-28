@@ -8,6 +8,16 @@ import ItemDetails from "./Partials/ItemDetails";
 import RequestItemForm from "./Partials/RequestItemForm";
 import Request from "@/Components/Request";
 
+const borrowCategories = [
+    "Communications Equipment",
+    "Technical Scientific Equipment",
+    "ICT",
+    "Other Machinery and Equipment",
+    "Disaster Response and Rescue Equipment",
+    "Other Property Equipment",
+    "Quarters",
+];
+
 export default function Edit({ auth, item }) {
     const {id, created_at, updated_at, ...itemable } = item.itemable;
 
@@ -20,9 +30,9 @@ export default function Edit({ auth, item }) {
             <Container>
                 <ItemDetails item={item} />
 
-                {auth.user.role_id === 2 && (
+                {(auth.user.role_id === 2 && [...borrowCategories, "Office Supplies"].includes(item.itemable_type)) && (
                     <Card>
-                        <RequestItemForm item={item} />
+                        <RequestItemForm item={item} borrow={borrowCategories.includes(item.itemable_type)} />
                     </Card>
                 )}
 
