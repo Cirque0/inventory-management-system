@@ -28,6 +28,12 @@ const status = {
             <span className="sm:block hidden">Denied</span>
         </span>
     ),
+    pending_return: (
+        <span className="flex items-center gap-1 py-2 px-4 bg-gradient-to-r sm:from-60% from-amber-300 to-cyan-300 text-cyan-800 font-bold text-xs uppercase tracking-widest rounded-lg">
+            <ClockIcon className="w-4 h-4" />
+            <span className="sm:block hidden">Returning</span>
+        </span>
+    ),
     returned: (
         <span className="flex items-center gap-1 py-2 px-4 bg-cyan-300 text-cyan-800 font-bold text-xs uppercase tracking-widest rounded-lg">
             <ArrowUturnLeftIcon className="w-4 h-4" />
@@ -44,6 +50,7 @@ export default function Request({ request, isAdmin = false }) {
     const [confirmingApprove, setConfirmingApprove] = useState(false);
     const [confirmingDeny, setConfirmingDeny] = useState(false);
     const [confirmingReturn, setConfirmingReturn] = useState(false);
+    const [confirmingReceived, setConfirmingReceived] = useState(false);
     const [confirmingDelete, setConfirmingDelete] = useState(false);
     const [confirmingCancel, setConfirmingCancel] = useState(false);
     const [showRemarks, setShowRemarks] = useState(false);
@@ -55,6 +62,11 @@ export default function Request({ request, isAdmin = false }) {
 
     const closeDenyModal = () => {
         setConfirmingDeny(false);
+        reset();
+    }
+
+    const closeReceivedModal = () => {
+        setConfirmingReceived(false);
         reset();
     }
 
@@ -88,11 +100,22 @@ export default function Request({ request, isAdmin = false }) {
         });
     }
 
+    const receivedItem = () => {
+        patch(route('requests.received'), {
+            onFinish: () => closeReceivedModal(false),
+        });
+    }
+
     return (
         <div className="flex flex-col p-4 bg-gray-50 rounded-lg">
-            <span className="text-xs uppercase tracking-wider">
-                {request.item.itemable_type}
-            </span>
+            <div className="flex justify-between items-baseline">
+                <span className="text-xs uppercase tracking-wider">
+                    {request.item.itemable_type}
+                </span>
+                <div className="flex gap-2">
+                    {status[request.status]}
+                </div>
+            </div>
             <span className="font-bold">{request.item.type}</span>
             <span className="text-sm">
                 Requested by{" "}
@@ -107,10 +130,7 @@ export default function Request({ request, isAdmin = false }) {
                 })}{" "}
             </span>
 
-            <div className="flex justify-between mt-4 gap-2 flex-wrap">
-                <div className="flex gap-2">
-                    {status[request.status]}
-                </div>
+            <div className="flex justify-end mt-4 gap-2 flex-wrap">
 
                 {request.status === 'pending' && (
                     isAdmin ? (
@@ -132,8 +152,19 @@ export default function Request({ request, isAdmin = false }) {
                     )
                 )}
 
+
                 {request.status !== 'pending' && (
                     <div className="flex gap-2 flex-wrap">
+                        {(request.status === 'pending_return' && isAdmin) && (
+                            <PrimaryButton
+                                className="gap-1 !bg-cyan-600 hover:!bg-cyan-500 focus:!bg-cyan-700 active:!bg-cyan-900 focus:!ring-cyan-500"
+                                onClick={() => setConfirmingReceived(true)}
+                            >
+                                <ArrowUturnLeftIcon className="h-4 w-4" />
+                                <span className="sm:block hidden">Recieved</span>
+                            </PrimaryButton>
+                        )}
+
                         {(request.status === 'approved' && !isAdmin && request.item.itemable_type !== 'Office Supplies') && (
                             <PrimaryButton
                                 className="gap-1 !bg-cyan-600 hover:!bg-cyan-500 focus:!bg-cyan-700 active:!bg-cyan-900 focus:!ring-cyan-500"
@@ -143,6 +174,7 @@ export default function Request({ request, isAdmin = false }) {
                                 <span className="sm:block hidden">Return</span>
                             </PrimaryButton>
                         )}
+
                         <SecondaryButton className="gap-1" onClick={() => setShowRemarks(true)}>
                             <ChatBubbleLeftEllipsisIcon className="h-4 w-4" />
                             <span className="sm:block hidden">Remarks</span>
@@ -276,6 +308,34 @@ export default function Request({ request, isAdmin = false }) {
                         </PrimaryButton>
                     </div>
                 </div>
+            </Modal>
+
+            <Modal show={confirmingReceived} onClose={closeReceivedModal}>
+                <form className="p-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Are you sure you the item has been received?
+                    </h2>
+
+                    <InputLabel htmlFor={'remarks'} value={'Remarks (optional):'} />
+                    <TextArea
+                        id='remarks'
+                        className={'w-full resize-none'}
+                        value={data.remarks}
+                        onChange={(e) => setData('remarks', e.target.value)}
+                    />
+                    {/* <p className="mt-1 text-sm text-gray-600">
+                        Once this account is deleted, all of its resources and data will be permanently deleted.
+                    </p> */}
+
+                    <div className="mt-6 flex justify-end gap-2">
+                        <SecondaryButton onClick={closeReceivedModal}>Cancel</SecondaryButton>
+
+                        <PrimaryButton onClick={receivedItem} className="gap-1 !bg-cyan-600 hover:!bg-cyan-500 focus:!bg-cyan-700 active:!bg-cyan-900 focus:!ring-cyan-500" disabled={processing}>
+                            <CheckIcon className="h-4 w-4" />
+                            <span className="sm:block hidden">Received</span>
+                        </PrimaryButton>
+                    </div>
+                </form>
             </Modal>
 
             <Modal show={showRemarks} onClose={() => setShowRemarks(false)}>
