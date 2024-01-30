@@ -138,16 +138,12 @@ class PrintController extends Controller
                     $table->addCell()->addText("Description", ["bold" => true]);
                     $table->addCell()->addText("Occupying Office Unit", ["bold" => true]);
                     $table->addCell()->addText("Total Floor Area", ["bold" => true]);
-                    $table->addCell()->addText("Repair Date", ["bold" => true]);
-                    $table->addCell()->addText("Repair Cost", ["bold" => true]);
                     $table->addCell()->addText("Building Ownership", ["bold" => true]);
                     break;
             }
             
             $table->addCell()->addText("Acquisition Date", ["bold" => true]);
-            $table->addCell()->addText("Acquisition Cost", ["bold" => true]);
             $table->addCell()->addText("Quantity", ["bold" => true]);
-            $table->addCell()->addText("Value", ["bold" => true]);
             $table->addCell()->addText("Location", ["bold" => true]);
             $table->addCell()->addText("Source", ["bold" => true]);
             $table->addCell()->addText("Status", ["bold" => true]);
@@ -211,16 +207,12 @@ class PrintController extends Controller
                         $table->addCell()->addText($item->itemable->description);
                         $table->addCell()->addText($item->itemable->occupying_office_unit);
                         $table->addCell()->addText($item->itemable->total_floor_area);
-                        $table->addCell()->addText($item->itemable->repair_date);
-                        $table->addCell()->addText(number_format($item->itemable->repair_cost, 2, ".", ","));
                         $table->addCell()->addText($item->itemable->building_ownership);
                         break;
                 }
     
                 $table->addCell()->addText($item->acquisition_date);
-                $table->addCell()->addText(number_format($item->acquisition_cost, 2, ".", ","));
                 $table->addCell()->addText($item->quantity);
-                $table->addCell()->addText(number_format($item->value, 2, ".", ","));
                 $table->addCell()->addText($item->location);
                 $table->addCell()->addText($item->source);
                 $table->addCell()->addText($item->status);
