@@ -1,6 +1,6 @@
 const Card = ({ children, className = "" }) => {
     return (
-        <div className={"flex flex-col bg-white rounded-lg p-4 gap-4 shadow " + className}>
+        <div className={"flex flex-col bg-white/80 rounded-lg p-4 gap-4 backdrop-blur-sm shadow " + className}>
             {children}
         </div>
     );

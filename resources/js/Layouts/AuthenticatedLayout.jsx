@@ -3,14 +3,14 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { Dialog } from '@headlessui/react';
-import { ArchiveBoxIcon, Bars3Icon, ChatBubbleLeftIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { ArchiveBoxIcon, Bars3Icon, ChatBubbleLeftIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/solid';
 import NavUserTag from '@/Components/NavUserTag';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen relative flex bg-temple">
+        <div className="min-h-screen relative flex bg-[url('/warehouse-image.jpg')] bg-cover bg-fixed">
             <nav className="sticky top-0 z-50 w-full max-w-64 h-screen hidden sm:flex flex-col p-4 gap-4 bg-blue-500 border-b border-blue-100 shadow">
                 <div className='flex justify-between align-baseline'>
                     <ApplicationLogo className="block h-9 w-auto fill-current text-white" />
