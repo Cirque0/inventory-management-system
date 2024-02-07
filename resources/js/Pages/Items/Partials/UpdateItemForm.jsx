@@ -5,7 +5,7 @@ import MPSEquipmentForm from "@/Components/CategoryForms/MPSEquipmentForm";
 import MotorVehicleForm from "@/Components/CategoryForms/MotorVehicleForm";
 import QuarterForm from "@/Components/CategoryForms/QuarterForm";
 import WaterCraftForm from "@/Components/CategoryForms/WaterCraftForm";
-import Combobox from "@/Components/ComboBox";
+import Combobox from "@/Components/Combobox";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
