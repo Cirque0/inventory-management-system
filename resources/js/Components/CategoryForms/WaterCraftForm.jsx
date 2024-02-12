@@ -38,6 +38,21 @@ export default function WaterCraftForm({ data, setData, errors }) {
             </div>
 
             <div>
+                <InputLabel htmlFor="property_num" value="Property Number" required />
+
+                <TextInput
+                    id="property_num"
+                    type="text"
+                    className="mt-1 block w-full"
+                    value={data.property_num ? data.property_num : ""}
+                    onChange={(e) => setData("property_num", e.target.value)}
+                    required
+                />
+
+                <InputError className="mt-2" message={errors.property_num} />
+            </div>
+
+            <div>
                 <InputLabel htmlFor="body_num" value="Body Number" required />
 
                 <TextInput

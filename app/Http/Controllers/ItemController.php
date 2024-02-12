@@ -148,6 +148,7 @@ class ItemController extends Controller
 
         $item->fill($request->only([
             'type',
+            'property_num',
             'acquisition_date',
             'acquisition_cost',
             'source',
@@ -161,6 +162,7 @@ class ItemController extends Controller
 
         $itemable->fill($request->except([
             'type',
+            'property_num',
             'category',
             'acquisition_date',
             'acquisition_cost',
@@ -246,6 +248,7 @@ class ItemController extends Controller
 
         $item->fill($request->only([
             'type',
+            'property_num',
             'acquisition_date',
             'acquisition_cost',
             'source',

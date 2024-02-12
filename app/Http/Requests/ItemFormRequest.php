@@ -26,6 +26,7 @@ class ItemFormRequest extends FormRequest
         $generalRules = [
             'category' => ['required', Rule::in(array_keys(Relation::morphMap()))],
             'type' => ['required', 'string'],
+            'property_num' => ['nullable', 'string'],
             'acquisition_date' => ['required', 'date'],
             'acquisition_cost' => ['required', 'integer'],
             'source' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],

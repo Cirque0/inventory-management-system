@@ -15,6 +15,7 @@ class Item extends Model
 
     protected $fillable = [
         'type',
+        'property_num',
         'itemable_id',
         'itemable_type',
         'acquisition_date',
