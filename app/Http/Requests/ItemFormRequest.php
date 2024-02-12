@@ -29,7 +29,7 @@ class ItemFormRequest extends FormRequest
             'property_num' => ['nullable', 'string'],
             'acquisition_date' => ['required', 'date'],
             'acquisition_cost' => ['required', 'integer'],
-            'source' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', Rule::in(['Org', 'Don', 'Lnd', 'FAS'])],
+            'source' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', Rule::in(['Org', 'Don', 'Lnd', 'FAS', 'Proc'])],
             'status' => ['required', Rule::in(['Svc', 'Uns', 'BER', 'Alive', 'Lnef', 'Ret', 'Exp', 'In good condition', 'For repair', 'For condemnation'])],
             'quantity' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', 'integer'],
             'value' => [Rule::excludeIf($this->category == 'Buildings and Facilities'), 'required', 'integer'],

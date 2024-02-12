@@ -133,7 +133,7 @@ export default function CreateItemForm({ className, categories }) {
                                     value={data.source}
                                     onChange={(value) => setData('source', value)}
                                     className="mt-1 block w-full"
-                                    options={['Org', 'Don', 'Lnd', 'FAS']}
+                                    options={['Org', 'Don', 'Lnd', 'FAS', 'Proc']}
                                 />
                                 
                                 <InputError className="mt-2" message={errors.source} />
