@@ -57,6 +57,7 @@ class ItemFormRequest extends FormRequest
                 break;
 
             case 'MPS Equipment':
+            case 'MPS Equipment Non-Combat':
                 $additionalRules = [
                     'make' => ['required', 'string'],
                     'cal' => ['required', 'string'],

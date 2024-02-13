@@ -102,6 +102,7 @@ class PrintController extends Controller
                     break;
     
                 case 'MPS Equipment':
+                case 'MPS Equipment Non-Combat':
                     $table->addCell()->addText("Make/Brand", ["bold" => true]);
                     $table->addCell()->addText("Cal", ["bold" => true]);
                     $table->addCell()->addText("Serial Number", ["bold" => true]);
@@ -171,6 +172,7 @@ class PrintController extends Controller
                         break;
         
                     case 'MPS Equipment':
+                    case 'MPS Equipment Non-Combat':
                         $table->addCell()->addText($item->itemable->make);
                         $table->addCell()->addText($item->itemable->cal);
                         $table->addCell()->addText($item->itemable->serial_num);

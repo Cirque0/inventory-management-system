@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
             'Motor Vehicle' => 'App\Models\MotorVehicle',
             'Water Craft' => 'App\Models\WaterCraft',
             'MPS Equipment' => 'App\Models\MPSEquipment',
+            'MPS Equipment Non-Combat' => 'App\Models\MPSNonCombat',
             'Communications Equipment' => 'App\Models\CommsEquipment',
             'Technical Scientific Equipment' => 'App\Models\TechSciEquipment',
             'ICT' => 'App\Models\ICT',

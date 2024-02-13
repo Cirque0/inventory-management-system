@@ -69,6 +69,7 @@ export default function CreateItemForm({ className, categories }) {
                         case "Water Craft":
                             return <WaterCraftForm data={data} setData={setData} errors={errors} />
                         case "MPS Equipment":
+                        case "MPS Equipment Non-Combat":
                             return <MPSEquipmentForm data={data} setData={setData} errors={errors} />
                         case "Communications Equipment":
                         case "Technical Scientific Equipment":

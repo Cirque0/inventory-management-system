@@ -50,6 +50,7 @@ export default function ItemDetails({ item }) {
                         case "Water Craft":
                             return <WaterCraftDetails details={item.itemable} />
                         case "MPS Equipment":
+                        case "MPS Equipment Non-Combat":
                             return <MPSEquipmentDetails details={item.itemable} />
                         case "Communications Equipment":
                         case "Technical Scientific Equipment":

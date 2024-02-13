@@ -13,6 +13,7 @@ use App\Models\Item;
 use App\Models\MedicalEquipment;
 use App\Models\MotorVehicle;
 use App\Models\MPSEquipment;
+use App\Models\MPSNonCombat;
 use App\Models\OfficeEquipment;
 use App\Models\OfficeSupplies;
 use App\Models\OtherEquipment;
@@ -93,7 +94,7 @@ class ItemController extends Controller
                     )
                     ->orWhereHasMorph(
                         'itemable',
-                        [MPSEquipment::class],
+                        [MPSEquipment::class, MPSNonCombat::class],
                         function ($query) use ($input) {
                             $query->where('cal', 'like', '%' . $input . '%');
                         }
@@ -189,6 +190,10 @@ class ItemController extends Controller
 
             case 'MPS Equipment':
                 $itemable = MPSEquipment::create($request->only(['make', 'cal', 'serial_num']));
+                break;
+
+            case 'MPS Equipment Non-Combat':
+                $itemable = MPSNonCombat::create($request->only(['make', 'cal', 'serial_num']));
                 break;
 
             case 'Communications Equipment':
